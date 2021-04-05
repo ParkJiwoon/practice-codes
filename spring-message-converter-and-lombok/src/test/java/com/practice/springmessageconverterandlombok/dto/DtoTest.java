@@ -54,14 +54,6 @@ public class DtoTest {
     }
 
     @Test
-    void test_one_dto_2() throws JsonProcessingException {
-        String json = "{\"aaaa\":null,\"bbbb\":null,\"cccC\":null,\"dddd\":null}";
-        OneDto oneDto = objectMapper.readValue(json, OneDto.class);
-
-        System.out.println("Jackson : " + oneDto);
-    }
-
-    @Test
     void test_two_dto() throws JsonProcessingException {
         TwoDto twoDto = new TwoDto();
         String content = objectMapper.writeValueAsString(twoDto);
