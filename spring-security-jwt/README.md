@@ -4,7 +4,7 @@
 
 Refresh Token 로직을 추가하고 전체적으로 수정을 조금 했습니다.
 
-전체적인 정리글은 [여기](https://github.com/ParkJiwoon/practice-codes/tree/master/spring-security-jwt) 에서 확인할 수 있습니다.
+전체적인 정리글은 [여기](https://github.com/ParkJiwoon/PrivateStudy/blob/master/spring/spring-security-and-jwt.md) 에서 확인할 수 있습니다.
 
 <br>
 
