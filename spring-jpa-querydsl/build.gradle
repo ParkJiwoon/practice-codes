@@ -27,6 +27,10 @@ dependencies {
     // 2. querydsl 추가
     implementation 'com.querydsl:querydsl-jpa'
 
+    // 실제로 쿼리가 어떻게 날라가는지 로깅
+    // 운영에서는 성능 이슈 때문에 로그를 남기지 않는 걸 권장
+    implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.6.3'
+
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'com.h2database:h2'
     annotationProcessor 'org.projectlombok:lombok'
