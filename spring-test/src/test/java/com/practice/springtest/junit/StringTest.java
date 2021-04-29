@@ -3,43 +3,9 @@ package com.practice.springtest.junit;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.*;
 
 public class StringTest {
-
-    @DisplayName("containsExactly: 순서를 포함해서 배열이 정확히 일치해야 함")
-    @Test
-    void containsExactlyTest() {
-        List<Integer> list = Arrays.asList(1, 2, 3);
-        assertThat(list).containsExactly(1, 2, 3);
-
-        /*
-         * 실패 케이스
-         *
-         * assertThat(list).containsExactly(1, 2);       -> 원소 3 이 일치하지 않아서
-         * assertThat(list).containsExactly(3, 2, 1);    -> list 의 순서가 달라서 실패
-         * assertThat(list).containsExactly(1, 2, 3, 3); -> list 에 중복된 원소가 있어서 실패
-         */
-    }
-
-    @DisplayName("containsOnly: 원소의 순서, 중복 여부 무시하고 값만 일치하면 됨")
-    @Test
-    void containsOnlyTest() {
-        List<Integer> list = Arrays.asList(1, 2, 3);
-        assertThat(list).containsOnly(1, 2, 3);
-        assertThat(list).containsOnly(3, 2, 1);     // 순서가 다르지만 성공
-        assertThat(list).containsOnly(1, 2, 3, 3);  // 중복이지만 성공
-
-        /*
-         * 실패 케이스
-         *
-         * assertThat(list).containsOnly(1, 2);       -> 원소 3 이 일치하지 않아서 실패
-         * assertThat(list).containsOnly(1, 2, 3, 4); -> 원소 4 가 일치하지 않아서 실패
-         */
-    }
 
     @DisplayName("'1,2' 를 , 로 split 했을 때 1 과 2 로 잘 분리되는 지 확인")
     @Test
