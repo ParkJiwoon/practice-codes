@@ -7,10 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.PersistenceUnit;
+import javax.persistence.*;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,8 +19,8 @@ public class MemberServiceTest {
     private static final String NAME = "alice";
     private static final Integer AGE = 23;
 
-    @PersistenceUnit
-    private EntityManagerFactory emf;
+    @PersistenceContext
+    EntityManager entityManager;
 
     @Autowired
     private MemberService memberService;
@@ -74,14 +71,13 @@ public class MemberServiceTest {
         assertThat(byName.isPresent()).isFalse();
     }
 
-
     // 현재 트랜잭션 이름 조회
     private void logCurrentTransactionName() {
         System.out.println("currentTransactionName : " + TransactionSynchronizationManager.getCurrentTransactionName());
     }
 
     // 영속성 컨텍스트에 올라가있는 지 조회
-    private boolean isLoadedToPersistenceContext(Object entity) {
-        return emf.getPersistenceUnitUtil().isLoaded(entity);
+    private boolean isInPersistenceContext(Object entity) {
+        return entityManager.contains(entity);
     }
 }
