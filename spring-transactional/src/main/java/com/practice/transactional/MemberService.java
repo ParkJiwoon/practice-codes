@@ -17,8 +17,8 @@ public class MemberService {
     }
 
     @Transactional(readOnly = true)
-    public void createWithReadOnlyTransactional(String name, Integer age) {
-        Member member = new Member(name, age);
+    public void createWithReadOnlyTransactional(Long id, String name, Integer age) {
+        Member member = new Member(id, name, age);
         memberRepository.save(member);
     }
 }
