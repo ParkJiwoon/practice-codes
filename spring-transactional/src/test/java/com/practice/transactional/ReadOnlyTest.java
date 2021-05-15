@@ -14,7 +14,7 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.*;
 
 @SpringBootTest
-public class MemberServiceTest {
+public class ReadOnlyTest {
 
     private static final String NAME = "alice";
     private static final Integer AGE = 23;
