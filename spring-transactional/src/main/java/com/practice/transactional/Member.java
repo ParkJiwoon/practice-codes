@@ -7,6 +7,7 @@ import javax.persistence.*;
 @Table
 @Entity
 @Getter
+@Setter
 @ToString
 @NoArgsConstructor
 public class Member {
