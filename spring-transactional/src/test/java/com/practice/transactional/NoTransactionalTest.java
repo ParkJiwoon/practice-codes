@@ -12,6 +12,7 @@ import javax.persistence.PersistenceContext;
 
 import static org.assertj.core.api.Assertions.*;
 
+@DisplayName("@Transactional 안걸었을 경우 CRUD 테스트")
 @SpringBootTest
 public class NoTransactionalTest {
 
