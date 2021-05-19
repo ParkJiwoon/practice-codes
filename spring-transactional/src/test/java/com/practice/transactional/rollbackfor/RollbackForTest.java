@@ -65,12 +65,30 @@ public class RollbackForTest {
         assertThat(repository.findByName(NAME)).isEmpty();
     }
 
-    @DisplayName("rollbackFor 옵션을 주어도 RuntimeException 이나 Error 발생 시 롤백하는 건 변하지 않음")
+    @DisplayName("rollbackFor 옵션으로 다른 Exception 지정해도 RuntimeException 이나 Error 발생 시 롤백")
     @Test
     void testThrowRuntimeExceptionTest() {
         assertThatExceptionOfType(RuntimeException.class)
                 .isThrownBy(() -> service.throwRuntimeExceptionTest(NAME, AGE));
 
         assertThat(repository.findByName(NAME)).isEmpty();
+    }
+
+    @DisplayName("noRollbackFor 으로 RuntimeException 을 지정하면 롤백되지 않음")
+    @Test
+    void testNoRollbackForRuntimeException() {
+        assertThatExceptionOfType(RuntimeException.class)
+                .isThrownBy(() -> service.noRollbackForRuntimeException(NAME, AGE));
+
+        assertThat(repository.findByName(NAME)).isPresent();
+    }
+
+    @DisplayName("noRollbackFor 으로 Error 를 지정하면 롤백되지 않음")
+    @Test
+    void testNoRollbackForError() {
+        assertThatExceptionOfType(Error.class)
+                .isThrownBy(() -> service.noRollbackForError(NAME, AGE));
+
+        assertThat(repository.findByName(NAME)).isPresent();
     }
 }

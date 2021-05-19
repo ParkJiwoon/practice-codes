@@ -48,4 +48,18 @@ public class RollbackForService {
         memberRepository.save(member);
         throw new RuntimeException();
     }
+
+    @Transactional(noRollbackFor = RuntimeException.class)
+    public void noRollbackForRuntimeException(String name, Integer age) {
+        Member member = new Member(name, age);
+        memberRepository.save(member);
+        throw new RuntimeException();
+    }
+
+    @Transactional(noRollbackFor = Error.class)
+    public void noRollbackForError(String name, Integer age) {
+        Member member = new Member(name, age);
+        memberRepository.save(member);
+        throw new UnknownError();
+    }
 }
