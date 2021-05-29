@@ -2,6 +2,7 @@ package com.practice.transactional.propagation;
 
 import com.practice.transactional.Member;
 import com.practice.transactional.MemberRepository;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,25 +24,28 @@ public class RequiresNewTest {
     @Autowired
     private MemberRepository repository;
 
+    @BeforeEach
+    void beforeClear() {
+        repository.deleteAll();
+    }
+
     @DisplayName("부모 트랜잭션이 있어도 무시하고 새로운 트랜잭션 생성")
     @Test
     void newSupportIfExist() {
-        String name = NAME + "1";
-        repository.save(new Member(name, AGE));
+        repository.save(new Member(NAME, AGE));
 
-        assertThat(service.callTransaction(Propagation.REQUIRES_NEW, name)).contains("ChildService.getRequiresNew");
+        assertThat(service.callTransaction(Propagation.REQUIRES_NEW, NAME)).contains("ChildService.getRequiresNew");
 
-        assertThat(repository.findByName(name)).isEmpty();
+        assertThat(repository.findByName(NAME)).isEmpty();
     }
 
     @DisplayName("부모 트랜잭션이 없으면 새 트랜잭션 시작")
     @Test
     void newSupportIfNone() {
-        String name = NAME + "2";
-        repository.save(new Member(name, AGE));
+        repository.save(new Member(NAME, AGE));
 
-        assertThat(service.callNoTransaction(Propagation.REQUIRES_NEW, name)).contains("ChildService.getRequiresNew");
+        assertThat(service.callNoTransaction(Propagation.REQUIRES_NEW, NAME)).contains("ChildService.getRequiresNew");
 
-        assertThat(repository.findByName(name)).isEmpty();
+        assertThat(repository.findByName(NAME)).isEmpty();
     }
 }

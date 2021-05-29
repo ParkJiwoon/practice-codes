@@ -2,6 +2,7 @@ package com.practice.transactional.propagation;
 
 import com.practice.transactional.Member;
 import com.practice.transactional.MemberRepository;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,27 +26,30 @@ public class MandatoryTest {
     @Autowired
     private MemberRepository repository;
 
+    @BeforeEach
+    void beforeClear() {
+        repository.deleteAll();
+    }
+
     @DisplayName("부모 트랜잭션이 존재할 경우 참여")
     @Test
     void supportIfExist() {
-        String name = NAME + "1";
-        repository.save(new Member(name, AGE));
+        repository.save(new Member(NAME, AGE));
 
-        assertThat(service.callTransaction(Propagation.MANDATORY, name)).contains("ParentService.callTransaction");
+        assertThat(service.callTransaction(Propagation.MANDATORY, NAME)).contains("ParentService.callTransaction");
 
-        assertThat(repository.findByName(name)).isEmpty();
+        assertThat(repository.findByName(NAME)).isEmpty();
     }
 
     @DisplayName("부모 트랜잭션이 없으면 예외 발생")
     @Test
     void throwExceptionIfNone() {
-        String name = NAME + "2";
-        repository.save(new Member(name, AGE));
+        repository.save(new Member(NAME, AGE));
 
         assertThatExceptionOfType(IllegalTransactionStateException.class)
-                .isThrownBy(() -> service.callNoTransaction(Propagation.MANDATORY, name))
+                .isThrownBy(() -> service.callNoTransaction(Propagation.MANDATORY, NAME))
                 .withMessage("No existing transaction found for transaction marked with propagation 'mandatory'");
 
-        assertThat(repository.findByName(name)).isPresent();
+        assertThat(repository.findByName(NAME)).isPresent();
     }
 }

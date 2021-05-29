@@ -2,6 +2,7 @@ package com.practice.transactional.propagation;
 
 import com.practice.transactional.Member;
 import com.practice.transactional.MemberRepository;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,25 +24,28 @@ public class RequiredTest {
     @Autowired
     private MemberRepository repository;
 
+    @BeforeEach
+    void beforeClear() {
+        repository.deleteAll();
+    }
+
     @DisplayName("부모 트랜잭션이 존재할 경우 참여")
     @Test
     void supportIfExist() {
-        String name = NAME + "1";
-        repository.save(new Member(name, AGE));
+        repository.save(new Member(NAME, AGE));
 
-        assertThat(service.callTransaction(Propagation.REQUIRED, name)).contains("ParentService.callTransaction");
+        assertThat(service.callTransaction(Propagation.REQUIRED, NAME)).contains("ParentService.callTransaction");
 
-        assertThat(repository.findByName(name)).isEmpty();
+        assertThat(repository.findByName(NAME)).isEmpty();
     }
 
     @DisplayName("부모 트랜잭션이 없으면 새 트랜잭션 시작")
     @Test
     void newSupportIfNone() {
-        String name = NAME + "2";
-        repository.save(new Member(name, AGE));
+        repository.save(new Member(NAME, AGE));
 
-        assertThat(service.callNoTransaction(Propagation.REQUIRED, name)).contains("ChildService.getRequired");
+        assertThat(service.callNoTransaction(Propagation.REQUIRED, NAME)).contains("ChildService.getRequired");
 
-        assertThat(repository.findByName(name)).isEmpty();
+        assertThat(repository.findByName(NAME)).isEmpty();
     }
 }
