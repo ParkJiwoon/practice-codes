@@ -15,8 +15,8 @@
 
 <br>
 
-트랜잭셔널 전파 옵션을 설정할 수 있습니다.
+# 테스트 방법
 
-non-transactional 상태에 대해 한가지 착각을 한 점이 있었는데 `NOT_SUPPORTED` 같은 트랜잭션은 실행은 되지만 커밋, 롤백이 반영되지 않는 상태입니다.
-
-따라서 `TransactionSynchronizationManager.getCurrentTransactionName()` 메소드로 트랜잭션 이름은 구할 수 있지만 JPA Dirty Checking 은 동작하지 않습니다.
+- 부모 트랜잭션과 자식 트랜잭션을 담당하는 `ParentService`, `ChildSerivde` 를 선언
+- 부모 트랜잭션에 참여 여부는 `TransactionSynchronizationManager.getCurrentTransactionName()` 로 현재 트랜잭션의 이름을 확인
+- 트랜잭션 동작 여부는 Dirty Checking 으로 확인
