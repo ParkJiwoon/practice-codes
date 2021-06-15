@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: slideomix
+Build-Jdk: 11.0.10
+Extension-Name: token-macro
+Specification-Title: This plugin adds reusable macro expansion capabil
+ ity for other plugins to use.
+Implementation-Title: token-macro
+Implementation-Version: 2.15
+Group-Id: org.jenkins-ci.plugins
+Short-Name: token-macro
+Long-Name: Token Macro Plugin
+Url: https://github.com/jenkinsci/token-macro-plugin
+Minimum-Java-Version: 1.8
+Plugin-Version: 2.15
+Hudson-Version: 2.274
+Jenkins-Version: 2.274
+Plugin-Dependencies: workflow-step-api:2.23,structs:1.20
+Plugin-Developers: Kohsuke Kawaguchi:kohsuke:kkawaguchi@cloudbees.com,
+ Alex Earl:slide_o_mix:slide.o.mix@gmail.com
+Plugin-License-Name: The MIT License (MIT)
+Plugin-License-Url: http://opensource.org/licenses/MIT
+Plugin-ScmUrl: https://github.com/jenkinsci/token-macro-plugin
+

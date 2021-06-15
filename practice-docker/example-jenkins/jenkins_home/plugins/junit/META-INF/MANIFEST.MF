@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: timja
+Build-Jdk: 11.0.9.1
+Extension-Name: junit
+Specification-Title: Allows JUnit-format test results to be published.
+Implementation-Title: junit
+Implementation-Version: 1.50
+Group-Id: org.jenkins-ci.plugins
+Short-Name: junit
+Long-Name: JUnit Plugin
+Url: https://github.com/jenkinsci/junit-plugin
+Minimum-Java-Version: 1.8
+Plugin-Version: 1.50
+Hudson-Version: 2.222.4
+Jenkins-Version: 2.222.4
+Plugin-Dependencies: bootstrap4-api:4.6.0-1,checks-api:1.5.0,echarts-a
+ pi:4.9.0-3,plugin-util-api:1.7.1,workflow-api:2.41,workflow-step-api:
+ 2.23,display-url-api:2.3.4,jackson2-api:2.12.1,script-security:1.76
+Plugin-Developers: 
+Plugin-License-Name: MIT
+Plugin-License-Url: http://opensource.org/licenses/MIT
+Plugin-ScmUrl: https://github.com/jenkinsci/junit-plugin
+

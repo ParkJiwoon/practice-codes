@@ -1,0 +1,26 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: carroll
+Build-Jdk: 1.8.0_282
+Extension-Name: workflow-cps-global-lib
+Specification-Title: The Jenkins Plugins Parent POM Project
+Implementation-Title: workflow-cps-global-lib
+Implementation-Version: 2.19
+Group-Id: org.jenkins-ci.plugins.workflow
+Short-Name: workflow-cps-global-lib
+Long-Name: Pipeline: Shared Groovy Libraries
+Url: https://github.com/jenkinsci/workflow-cps-global-lib-plugin
+Minimum-Java-Version: 1.8
+Plugin-Version: 2.19
+Hudson-Version: 2.222.4
+Jenkins-Version: 2.222.4
+Plugin-Dependencies: workflow-api:2.41,workflow-cps:2.90,workflow-step
+ -api:2.23,workflow-support:3.8,cloudbees-folder:6.15,credentials:2.3.
+ 15,git-server:1.9,scm-api:2.6.4,script-security:1.76
+Plugin-Developers: 
+Plugin-License-Name: MIT License
+Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmUrl: https://github.com/jenkinsci/workflow-cps-global-lib-pl
+ ugin
+

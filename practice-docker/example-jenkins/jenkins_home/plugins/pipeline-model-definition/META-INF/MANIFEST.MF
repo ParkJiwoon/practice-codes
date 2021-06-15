@@ -1,0 +1,31 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: bitwiseman
+Build-Jdk: 1.8.0_292
+Extension-Name: pipeline-model-definition
+Specification-Title: An opinionated, declarative Pipeline
+Implementation-Title: pipeline-model-definition
+Implementation-Version: 1.8.5
+Group-Id: org.jenkinsci.plugins
+Short-Name: pipeline-model-definition
+Long-Name: Pipeline: Declarative
+Url: https://github.com/jenkinsci/pipeline-model-definition-plugin
+Compatible-Since-Version: 1.6.0
+Minimum-Java-Version: 1.8
+Plugin-Version: 1.8.5
+Hudson-Version: 2.190.3
+Jenkins-Version: 2.190.3
+Plugin-Dependencies: workflow-api:2.40,workflow-basic-steps:2.20,workf
+ low-cps-global-lib:2.17,workflow-cps:2.83,workflow-durable-task-step:
+ 2.35,workflow-multibranch:2.16,workflow-scm-step:2.11,workflow-suppor
+ t:3.5,credentials-binding:1.24,credentials:2.3.11,git-client:3.2.1,ma
+ iler:1.32.1,pipeline-input-step:2.12,pipeline-stage-step:2.3,scm-api:
+ 2.6.4,structs:1.20,pipeline-model-api:1.8.5,pipeline-model-extensions
+ :1.8.5,pipeline-stage-tags-metadata:1.8.5
+Plugin-Developers: Andrew Bayer:abayer:
+Plugin-License-Name: MIT
+Plugin-License-Url: http://opensource.org/licenses/MIT
+Plugin-ScmUrl: https://github.com/jenkinsci/pipeline-model-definition-
+ plugin
+

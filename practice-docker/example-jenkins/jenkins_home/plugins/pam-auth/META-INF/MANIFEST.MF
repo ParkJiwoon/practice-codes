@@ -1,0 +1,23 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: matt
+Build-Jdk: 1.8.0_222
+Extension-Name: pam-auth
+Specification-Title: Adds Unix Pluggable Authentication Module (PAM) s
+ upport to Jenkins
+Implementation-Title: pam-auth
+Implementation-Version: 1.6
+Group-Id: org.jenkins-ci.plugins
+Short-Name: pam-auth
+Long-Name: PAM Authentication plugin
+Url: https://wiki.jenkins.io/display/JENKINS/PAM+Authentication+Plugin
+Minimum-Java-Version: 1.8
+Plugin-Version: 1.6
+Hudson-Version: 2.138.4
+Jenkins-Version: 2.138.4
+Plugin-Developers: 
+Plugin-License-Name: The MIT license
+Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmUrl: https://github.com/jenkinsci/plugin-pom/pam-auth
+
