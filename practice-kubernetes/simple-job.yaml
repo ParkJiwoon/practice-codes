@@ -1,0 +1,24 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: pingpong
+  labels:
+    app: pingpong
+spec:
+  parallelism: 3
+  template:
+    metadata:
+      labels:
+        app: pingpong
+    spec:
+      containers:
+      - name: pingpong
+        image: gihyodocker/alpine:bash
+        command: ["/bin/sh"]
+        args:
+          - "-c"
+          - |
+            echo [`date`] ping!
+            sleep 10
+            echo [`date`] pong!
+      restartPolicy: Never

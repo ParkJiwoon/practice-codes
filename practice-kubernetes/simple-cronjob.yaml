@@ -1,0 +1,24 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: pingpong
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            app: pingpong
+        spec:
+          containers:
+          - name: pingpong
+            image: gihyodocker/alpine:bash
+            command: ["/bin/sh"]
+            args:
+              - "-c"
+              - |
+                echo [`date`] ping!
+                sleep 10
+                echo [`date`] pong!
+          restartPolicy: OnFailure

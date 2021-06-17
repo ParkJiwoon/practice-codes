@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: echo-spring
+  labels:
+    app: echo
+    release: spring
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: echo
+      release: spring
+  template: # template 아래는 파드 리소스 정의와 같음
+    metadata:
+      labels:
+        app: echo
+        release: spring
+    spec:
+      containers:
+        - name: nginx
+          image: gihyodocker/nginx:latest
+          env:
+            - name: BACKEND_HOST
+              value: localhost:8080
+          ports:
+            - containerPort: 80
+        - name: echo
+          image: gihyodocker/echo:latest
+          ports :
+            - containerPort: 8080
+ 
+---
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: echo-summer
+  labels:
+    app: echo
+    release: sumer
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: echo
+      release: summer
+  template: # template 아래는 파드 리소스 정의와 같음
+    metadata:
+      labels:
+        app: echo
+        release: summer
+    spec:
+      containers:
+        - name: nginx
+          image: gihyodocker/nginx:latest
+          env:
+            - name: BACKEND_HOST
+              value: localhost:8080
+          ports:
+            - containerPort: 80
+        - name: echo
+          image: gihyodocker/echo:latest
+          ports :
+            - containerPort: 8080

@@ -1,0 +1,12 @@
+apiVersion: extension/v1beta1
+kind: Ingress
+metadata:
+  name: echo
+spec:
+  rules:
+  - host: ch05.gihyo.local
+    http:
+    - path: /
+      backend:
+        serviceName: echo
+        servicePort: 80

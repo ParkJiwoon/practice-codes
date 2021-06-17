@@ -1,0 +1,15 @@
+redmineUsername: woody
+redminePassword: woody
+redmineLanguage: ko
+
+service:
+  type: NodePort
+
+persistence:
+  enabled: false
+
+mariadb:
+  enabled: false
+
+postgresql:
+  enabled: false
