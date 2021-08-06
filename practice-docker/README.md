@@ -1,1 +1,0 @@
-도커 & 쿠버네티스 연습 ([정리글](https://github.com/ParkJiwoon/PrivateStudy/tree/master/books-or-lecture/%EB%8F%84%EC%BB%A4-%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EA%B0%9C%EB%B0%9C-%EC%8B%A4%EC%A0%84-%EC%9E%85%EB%AC%B8))
