@@ -1,9 +1,13 @@
-package com.example.springwebflux;
+package com.example.springwebflux.kitchen;
 
 public class Dish {
 
     private String description;
     private boolean delivered = false;
+
+    public Dish(String description) {
+        this.description = description;
+    }
 
     public static Dish deliver(Dish dish) {
         Dish deliveredDish = new Dish(dish.description);
@@ -11,16 +15,8 @@ public class Dish {
         return deliveredDish;
     }
 
-    Dish(String description) {
-        this.description = description;
-    }
-
     public String getDescription() {
         return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public boolean isDelivered() {
