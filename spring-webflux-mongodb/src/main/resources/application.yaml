@@ -1,0 +1,10 @@
+spring:
+  webflux:
+    hiddenmethod:
+      filter:
+        enabled: true
+
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
