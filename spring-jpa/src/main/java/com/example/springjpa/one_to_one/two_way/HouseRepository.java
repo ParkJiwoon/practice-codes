@@ -1,4 +1,4 @@
-package com.example.springjpa.oneway.onetoone;
+package com.example.springjpa.one_to_one.two_way;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

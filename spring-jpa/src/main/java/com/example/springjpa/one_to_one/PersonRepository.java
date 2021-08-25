@@ -1,9 +1,6 @@
-package com.example.springjpa.oneway;
+package com.example.springjpa.one_to_one;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
-
 public interface PersonRepository extends JpaRepository<Person, Long> {
-    List<Person> findAllByName(String name);
 }
