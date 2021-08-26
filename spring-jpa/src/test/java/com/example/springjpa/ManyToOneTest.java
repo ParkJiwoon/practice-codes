@@ -1,11 +1,11 @@
 package com.example.springjpa;
 
-import com.example.springjpa.many_to_one.Member;
-import com.example.springjpa.many_to_one.MemberRepository;
-import com.example.springjpa.many_to_one.one_way.Car;
-import com.example.springjpa.many_to_one.one_way.CarRepository;
-import com.example.springjpa.many_to_one.two_way.Dog;
-import com.example.springjpa.many_to_one.two_way.DogRepository;
+import com.example.springjpa.many_to_one.School;
+import com.example.springjpa.many_to_one.SchoolRepository;
+import com.example.springjpa.many_to_one.one_way.Student;
+import com.example.springjpa.many_to_one.one_way.StudentRepository;
+import com.example.springjpa.many_to_one.two_way.Teacher;
+import com.example.springjpa.many_to_one.two_way.TeacherRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,86 +22,82 @@ import static org.assertj.core.api.Assertions.*;
 public class ManyToOneTest {
 
     @Autowired
-    private MemberRepository memberRepository;
+    private SchoolRepository schoolRepository;
 
     @Autowired
-    private CarRepository carRepository;
+    private StudentRepository studentRepository;
 
     @Autowired
-    private DogRepository dogRepository;
+    private TeacherRepository teacherRepository;
 
-    @DisplayName("다대일 단방향 매핑 Car 테스트")
+    @DisplayName("다대일 단방향 매핑 Student 테스트")
     @Test
-    void testCar() {
+    void testStudent() {
         // given
-        Member member = new Member();
-        member.setName("Alice");
-
-        Car car = new Car();
-        car.setMember(member);
+        School school = new School();
+        Student student = new Student();
+        student.setName("Bob");
+        student.setSchool(school);
 
         // when
-        carRepository.save(car);
+        studentRepository.save(student);
 
         // then
-        assertThat(memberRepository.findAll().size()).isEqualTo(1);
-        assertThat(carRepository.findAll().size()).isEqualTo(1);
+        assertThat(schoolRepository.findAll().size()).isEqualTo(1);
+        assertThat(studentRepository.findAll().size()).isEqualTo(1);
     }
 
-    @DisplayName("다대일 양방향 매핑 Dog 테스트")
+    @DisplayName("다대일 양방향 매핑 Teacher 테스트")
     @Test
-    void testDog() {
+    void testTeacher() {
         // given
-        Member member = new Member();
-        member.setName("Alice");
-
-        Dog dog = new Dog();
-        dog.setName("Poppy");
-        dog.setMember(member);
-        member.getDogs().add(dog);
+        School school = new School();
+        Teacher teacher = new Teacher();
+        teacher.setName("Poppy");
+        teacher.setSchool(school);
+        school.getTeachers().add(teacher);
 
         // when
-        dogRepository.save(dog);
+        teacherRepository.save(teacher);
 
         // then
-        List<Member> members = memberRepository.findAll();
-        List<Dog> dogs = dogRepository.findAll();
+        List<School> schools = schoolRepository.findAll();
+        List<Teacher> teachers = teacherRepository.findAll();
 
-        assertThat(members.size()).isEqualTo(1);
-        assertThat(dogs.size()).isEqualTo(1);
-        assertThat(members.get(0).getDogs().size()).isEqualTo(1);
-        assertThat(members.get(0).getDogs().get(0).getName()).isEqualTo("Poppy");
+        assertThat(schools.size()).isEqualTo(1);
+        assertThat(teachers.size()).isEqualTo(1);
+        assertThat(schools.get(0).getTeachers().size()).isEqualTo(1);
+        assertThat(schools.get(0).getTeachers().get(0).getName()).isEqualTo("Poppy");
     }
 
     @DisplayName("양방향 매핑에서 연관관계 주인이 아니면 데이터가 제대로 저장되지 않음")
     @Test
-    void testMappbedByMaster() {
+    void testMappedByMaster() {
         // given
-        Member member = new Member();
-        member.setName("Alice");
+        School school = new School();
 
-        Dog dog1 = new Dog();
-        dog1.setName("Poppy");
+        Teacher teacher1 = new Teacher();
+        teacher1.setName("Poppy");
 
-        Dog dog2 = new Dog();
-        dog2.setName("Kitty");
+        Teacher teacher2 = new Teacher();
+        teacher2.setName("Kitty");
 
         // when
-        member.getDogs().add(dog1);
-        member.getDogs().add(dog2);
-        memberRepository.save(member);
-        dogRepository.save(dog1);
-        dogRepository.save(dog2);
+        school.getTeachers().add(teacher1);
+        school.getTeachers().add(teacher2);
+        schoolRepository.save(school);
+        teacherRepository.save(teacher1);
+        teacherRepository.save(teacher2);
 
         // then
-        List<Member> members = memberRepository.findAll();
-        List<Dog> dogs = dogRepository.findAll();
+        List<School> schools = schoolRepository.findAll();
+        List<Teacher> teachers = teacherRepository.findAll();
 
-        assertThat(members.size()).isEqualTo(1);
-        assertThat(dogs.size()).isEqualTo(2);
+        assertThat(schools.size()).isEqualTo(1);
+        assertThat(teachers.size()).isEqualTo(2);
 
-        // Member 가 연관관계 주인이 아니기 때문에 데이터는 들어갔지만 dog.member_id 는 null 로 세팅되어 잇음
-        assertThat(dogs.get(0).getMember()).isNull();
-        assertThat(dogs.get(1).getMember()).isNull();
+        // School 이 연관관계 주인이 아니기 때문에 데이터는 들어갔지만 teacher.school_id 는 null 로 세팅되어 잇음
+        assertThat(teachers.get(0).getSchool()).isNull();
+        assertThat(teachers.get(1).getSchool()).isNull();
     }
 }
