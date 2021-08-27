@@ -29,6 +29,6 @@ public class Person {
     @Column(name = "name")
     private String name;
 
-    @OneToOne(mappedBy = "person")
+    @OneToOne(mappedBy = "person", cascade = CascadeType.ALL)
     private House house;
 }

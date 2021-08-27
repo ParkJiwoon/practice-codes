@@ -30,7 +30,7 @@ public class Student {
     @Column(name = "name")
     private String name;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "school_id")
     private School school;
 }

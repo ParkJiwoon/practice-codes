@@ -32,7 +32,7 @@ public class House {
     @Column(name = "address")
     private String address;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "person_id")
     private Person person;
 }

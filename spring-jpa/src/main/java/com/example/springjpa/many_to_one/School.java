@@ -27,6 +27,6 @@ public class School {
     @Column(name = "school_id")
     private Long id;
 
-    @OneToMany(mappedBy = "school")
+    @OneToMany(mappedBy = "school", cascade = CascadeType.ALL)
     private List<Teacher> teachers = new ArrayList<>();
 }
