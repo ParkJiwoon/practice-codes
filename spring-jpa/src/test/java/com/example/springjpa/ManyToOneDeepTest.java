@@ -14,6 +14,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@DisplayName("다대일 양방향 연관관계 심화 테스트")
 @SpringBootTest
 public class ManyToOneDeepTest {
 
@@ -32,7 +33,7 @@ public class ManyToOneDeepTest {
         schoolRepository.deleteAll();
     }
 
-    @DisplayName("다대일 양방향 매핑에서 연관관계의 주인쪽만 저장하면 데이터가 저장됨. " +
+    @DisplayName("연관관계의 주인쪽만 저장하면 데이터가 저장됨. " +
             "그리고 다른 트랜잭션이면 getter 로 Collection 을 가져올 수 있음")
     @Test
     void testCreateByRelationMaster() {
@@ -41,7 +42,7 @@ public class ManyToOneDeepTest {
         assertThat(teacherNames).containsExactly("Alice", "Bob");
     }
 
-    @DisplayName("다대일 양방향 매핑에서 연관 관계의 주인이 아니면 외래키 저장 불가능")
+    @DisplayName("연관 관계의 주인이 아니면 외래키 저장 불가능")
     @Test
     void testCreateByRelationSlave() {
         myService.createByRelationSlave();
@@ -59,7 +60,7 @@ public class ManyToOneDeepTest {
         assertThat(schools).isEmpty();
     }
 
-    @DisplayName("다대일 양방향 매핑에서 연관 관계의 주인이 아닌 쪽 (Colletions) 에서 지운게 반영되지 않음" +
+    @DisplayName("연관 관계의 주인이 아닌 쪽 (Colletions) 에서 지운게 반영되지 않음" +
                  "@OneToMany 에 orphanRemovel=true 옵션을 주면 지워짐")
     @Test
     void testDeleteBySlave() {
@@ -68,5 +69,14 @@ public class ManyToOneDeepTest {
 
         List<String> teacherNames = myService.findAllTeachers();
         assertThat(teacherNames).containsExactly("Alice", "Bob");
+    }
+
+    @DisplayName("연관 관계의 주인이 아닌 쪽을 지워도 cascade 옵션 때문에 연관된 엔티티가 전부 지워짐")
+    @Test
+    void testCascadeRemove() {
+        myService.createByRelationMaster(); // school 1개, Alice, Bob 저장되었음.
+        schoolRepository.deleteAll();
+
+        assertThat(teacherRepository.findAll()).isEmpty();
     }
 }
