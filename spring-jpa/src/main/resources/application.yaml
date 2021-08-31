@@ -6,3 +6,4 @@ spring:
       hibernate:
         format_sql: true
         show_sql: true
+        default_batch_fetch_size: 100   # 전역으로 배치 사이즈 적용

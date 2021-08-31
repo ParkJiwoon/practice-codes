@@ -11,6 +11,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
+//@BatchSize(size = 100)    // 다른 엔티티에서 Parent 프록시를 호출할 때 배치사이즈 적용
 public class Parent {
 
     @Id
@@ -20,6 +21,7 @@ public class Parent {
 
     private String name;
 
+    // @BatchSize(size = 100) getChildren() 호출할 때 배치 사이즈 적용
     @OneToMany(mappedBy = "parent")
     private List<Child> children = new ArrayList<>();
 }
