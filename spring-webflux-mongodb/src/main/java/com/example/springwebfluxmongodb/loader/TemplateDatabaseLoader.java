@@ -15,8 +15,11 @@ public class TemplateDatabaseLoader {
     @Bean
     public CommandLineRunner initialize(MongoOperations mongo) {
         return args -> {
-            mongo.save(new Item("Alf alarm clock", 19.99));
-            mongo.save(new Item("Smurf TV tray", 24.99));
+            mongo.findAll(Item.class).stream().findAny().orElseGet(() -> {
+                mongo.save(new Item("Alf alarm clock", 19.99));
+                mongo.save(new Item("Smurf TV tray", 24.99));
+                return null;
+            });
         };
     }
 }
