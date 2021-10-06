@@ -1,9 +1,9 @@
 package com.example.springwebfluxmongodb.controller;
 
 import com.example.springwebfluxmongodb.entity.Cart;
-import com.example.springwebfluxmongodb.entity.CartItem;
 import com.example.springwebfluxmongodb.repository.CartRepository;
 import com.example.springwebfluxmongodb.repository.ItemRepository;
+import com.example.springwebfluxmongodb.service.CartService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,10 +16,12 @@ public class HomeController {
 
     private final ItemRepository itemRepository;
     private final CartRepository cartRepository;
+    private final CartService cartService;
 
-    public HomeController(ItemRepository itemRepository, CartRepository cartRepository) {
+    public HomeController(ItemRepository itemRepository, CartRepository cartRepository, CartService cartService) {
         this.itemRepository = itemRepository;
         this.cartRepository = cartRepository;
+        this.cartService = cartService;
     }
 
     @GetMapping
@@ -35,29 +37,11 @@ public class HomeController {
     /**
      * My Cart 라는 장바구니를 찾아 새로 상품을 담거나 이미 있는 상품의 수량을 증가시킴
      *
-     * @param id    장바구니에 담으려는 상품(Item) 의 id
-     * @return      redirect 메세지
+     * @param itemId    장바구니에 담으려는 상품(Item) 의 id
+     * @return          redirect
      */
-    @PostMapping("/add/{id}")
-    Mono<String> addToCart(@PathVariable String id) {
-        return cartRepository.findById("My Cart")
-                .defaultIfEmpty(new Cart("My Cart"))
-                .flatMap(cart ->
-                        cart.getCartItems().stream()
-                                .filter(cartItem -> cartItem.getItem().getId().equals(id))
-                                .findAny()
-                                .map(cartItem -> {
-                                    cartItem.increment();
-                                    return Mono.just(cart);
-                                })
-                                .orElse(itemRepository.findById(id)
-                                        .map(CartItem::new)
-                                        .map(cartItem -> {
-                                            cart.getCartItems().add(cartItem);
-                                            return cart;
-                                        })
-                                ))
-                .flatMap(cartRepository::save)
-                .thenReturn("redirect:/");
+    @PostMapping("/add/{itemId}")
+    Mono<String> addToCart(@PathVariable String itemId) {
+        return cartService.addToCart("My Cart", itemId).thenReturn("redirect:/");
     }
 }
