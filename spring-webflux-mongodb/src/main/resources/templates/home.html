@@ -34,22 +34,22 @@
     </tbody>
   </table>
 
-<!--  <h2>My Cart</h2>-->
-<!--  <table>-->
-<!--    <thead>-->
-<!--      <tr>-->
-<!--        <th>Id</th>-->
-<!--        <th>Name</th>-->
-<!--        <th>Quantity</th>-->
-<!--      </tr>-->
-<!--    </thead>-->
-<!--    <tbody>-->
-<!--      <tr th:each="cartItem : ${cart.cartItems}">-->
-<!--        <td th:text="${cartItem.item.id}"></td>-->
-<!--        <td th:text="${cartItem.item.name}"></td>-->
-<!--        <td th:text="${cartItem.quantity}"></td>-->
-<!--      </tr>-->
-<!--    </tbody>-->
-<!--  </table>-->
+  <h2>My Cart</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Quantity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="cartItem : ${cart.cartItems}">
+        <td th:text="${cartItem.item.id}"></td>
+        <td th:text="${cartItem.item.name}"></td>
+        <td th:text="${cartItem.quantity}"></td>
+      </tr>
+    </tbody>
+  </table>
 </body>
 </html>
