@@ -50,4 +50,8 @@ public class CartItem {
                 ", quantity=" + quantity +
                 '}';
     }
+
+    public void increment() {
+        quantity++;
+    }
 }
