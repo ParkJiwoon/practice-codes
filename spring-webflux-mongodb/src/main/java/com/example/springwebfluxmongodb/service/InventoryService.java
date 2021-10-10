@@ -20,6 +20,11 @@ public class InventoryService {
      * Example 쿼리는 이후에 검색 조건 필드가 추가되어도 쉽게 적용 가능하다
      */
     public Flux<Item> searchByExample(String name, String description, boolean useAnd) {
+        // useAnd 가 false 인데 나머지 조건도 null 이면 에러 발생해서 미리 검사함
+        if (!useAnd && name == null && description == null) {
+            return Flux.empty();
+        }
+
         Item item = new Item(name, description, 0.0);
 
         // matchingAll 은 조건 모두 일치, matchingAny 은 하나라도 일치
