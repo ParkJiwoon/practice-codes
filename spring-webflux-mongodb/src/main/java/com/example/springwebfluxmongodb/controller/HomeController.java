@@ -46,7 +46,7 @@ public class HomeController {
     ) {
         return Mono.just(
                 Rendering.view("home")
-                        .modelAttribute("items", inventoryService.searchByExample(name, description, useAnd))
+                        .modelAttribute("items", inventoryService.searchByFluentExample(name, description, useAnd))
                         .modelAttribute("cart", cartRepository.findById("My Cart").defaultIfEmpty(new Cart("My Cart")))
                         .build()
         );
