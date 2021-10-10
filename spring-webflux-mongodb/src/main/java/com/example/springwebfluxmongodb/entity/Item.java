@@ -8,13 +8,19 @@ public class Item {
 
     private @Id String id;  // 몽고디비의 ObjectId
     private String name;
+    private String description;
     private double price;
 
     private Item() {}
 
-    public Item(String name, double price) {
+    public Item(String name, String description, double price) {
         this.name = name;
+        this.description = description;
         this.price = price;
+    }
+
+    public Item(String name, double price) {
+        this(name, null, price);
     }
 
     public String getId() {
@@ -33,6 +39,14 @@ public class Item {
         this.name = name;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public double getPrice() {
         return price;
     }
@@ -46,12 +60,12 @@ public class Item {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Item item = (Item) o;
-        return Double.compare(item.price, price) == 0 && Objects.equals(id, item.id) && Objects.equals(name, item.name);
+        return Double.compare(item.price, price) == 0 && Objects.equals(id, item.id) && Objects.equals(name, item.name) && Objects.equals(description, item.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, price);
+        return Objects.hash(id, name, description, price);
     }
 
     @Override
@@ -59,6 +73,7 @@ public class Item {
         return "Item{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
                 ", price=" + price +
                 '}';
     }
