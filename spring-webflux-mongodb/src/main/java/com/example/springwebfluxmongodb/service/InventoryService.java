@@ -23,10 +23,12 @@ public class InventoryService {
         Item item = new Item(name, description, 0.0);
 
         // matchingAll 은 조건 모두 일치, matchingAny 은 하나라도 일치
-        ExampleMatcher matcher = (useAnd ? ExampleMatcher.matchingAll() : ExampleMatcher.matchingAny())
-                .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING)
-                .withIgnoreCase()
-                .withIgnorePaths("price");
+        ExampleMatcher matcher = (useAnd
+                ? ExampleMatcher.matchingAll()
+                : ExampleMatcher.matchingAny())
+                                .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING)
+                                .withIgnoreCase()
+                                .withIgnorePaths("price");
 
         Example<Item> probe = Example.of(item, matcher);
         return itemRepository.findAll(probe);
