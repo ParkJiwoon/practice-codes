@@ -18,7 +18,7 @@ public class CartService {
         this.cartRepository = cartRepository;
     }
 
-    public Mono<Cart> addToCart(String cartId, String itemId) {
+    public Mono<Cart> addItemToCart(String cartId, String itemId) {
         return cartRepository.findById(cartId)
                 .log("foundCart")
                 .defaultIfEmpty(new Cart(cartId))
