@@ -13,14 +13,19 @@ public class Item {
 
     private Item() {}
 
-    public Item(String name, String description, double price) {
+    public Item(String id, String name, String description, double price) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
     }
 
+    public Item(String name, String description, double price) {
+        this(null, name, description, price);
+    }
+
     public Item(String name, double price) {
-        this(name, null, price);
+        this(null, name, null, price);
     }
 
     public String getId() {
