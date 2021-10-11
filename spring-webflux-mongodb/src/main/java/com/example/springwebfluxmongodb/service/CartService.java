@@ -18,9 +18,11 @@ public class CartService {
         this.cartRepository = cartRepository;
     }
 
-    public Mono<String> addToCart(String cartId, String itemId) {
+    public Mono<Cart> addToCart(String cartId, String itemId) {
         return cartRepository.findById(cartId)
+                .log("foundCart")
                 .defaultIfEmpty(new Cart(cartId))
+                .log("emptyCart")
                 .flatMap(cart -> cart.getCartItems().stream()
                         .filter(cartItem -> cartItem.getItem().getId().equals(itemId))
                         .findAny()
@@ -33,7 +35,8 @@ public class CartService {
                                 .doOnNext(cartItem -> cart.getCartItems().add(cartItem))
                                 .map(cartItem -> cart)
                         ))
+                .log("cartWithAnotherItem")
                 .flatMap(cartRepository::save)
-                .thenReturn("redirect:/");
+                .log("saveCart");
     }
 }
