@@ -1,0 +1,9 @@
+spring:
+  data:
+    mongodb:
+      host: localhost
+
+      # Mongo DB 기반 테스트 코드 실행 시 라이브 DB 를 못찾는 이슈가 있음
+      # 테스트 코드 실행할 때는 port 를 0 으로 설정해줘야 랜덤하게 하나를 선택한다고 함
+      # https://stackoverflow.com/questions/31568351/how-do-you-configure-embedded-mongdb-for-integration-testing-in-a-spring-boot-ap 참고
+      port: 0
