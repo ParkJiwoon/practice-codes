@@ -8,3 +8,7 @@ spring:
     mongodb:
       host: localhost
       port: 27017
+
+  devtools:
+    restart:
+      enabled: true # false 로 지정하면 개발자 도구에 의한 재시작을 비활성화 할 수 있음

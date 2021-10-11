@@ -32,7 +32,7 @@ public class HomeController {
     Mono<Rendering> home() {
         return Mono.just(
                 Rendering.view("home") // 렌더링에 사용할 템플릿
-                        .modelAttribute("items", itemRepository.findAll())
+                        .modelAttribute("items", itemRepository.findAll().doOnNext(System.out::println))
                         .modelAttribute("cart", cartRepository.findById("My Cart").defaultIfEmpty(new Cart("My Cart")))
                         .build()
         );
