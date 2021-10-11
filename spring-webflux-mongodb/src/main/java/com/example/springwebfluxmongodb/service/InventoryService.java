@@ -23,6 +23,10 @@ public class InventoryService {
         this.fluentOperations = fluentOperations;
     }
 
+    public Flux<Item> getInventory() {
+        return itemRepository.findAll();
+    }
+
     /**
      * Example 쿼리는 이후에 검색 조건 필드가 추가되어도 쉽게 적용 가능하다
      */

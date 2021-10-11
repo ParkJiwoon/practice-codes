@@ -1,8 +1,6 @@
 package com.example.springwebfluxmongodb.controller;
 
 import com.example.springwebfluxmongodb.entity.Cart;
-import com.example.springwebfluxmongodb.repository.CartRepository;
-import com.example.springwebfluxmongodb.repository.ItemRepository;
 import com.example.springwebfluxmongodb.service.CartService;
 import com.example.springwebfluxmongodb.service.InventoryService;
 import org.springframework.stereotype.Controller;
@@ -16,14 +14,10 @@ import reactor.core.publisher.Mono;
 @Controller
 public class HomeController {
 
-    private final ItemRepository itemRepository;
-    private final CartRepository cartRepository;
     private final CartService cartService;
     private final InventoryService inventoryService;
 
-    public HomeController(ItemRepository itemRepository, CartRepository cartRepository, CartService cartService, InventoryService inventoryService) {
-        this.itemRepository = itemRepository;
-        this.cartRepository = cartRepository;
+    public HomeController(CartService cartService, InventoryService inventoryService) {
         this.cartService = cartService;
         this.inventoryService = inventoryService;
     }
@@ -32,8 +26,8 @@ public class HomeController {
     Mono<Rendering> home() {
         return Mono.just(
                 Rendering.view("home") // 렌더링에 사용할 템플릿
-                        .modelAttribute("items", itemRepository.findAll().doOnNext(System.out::println))
-                        .modelAttribute("cart", cartRepository.findById("My Cart").defaultIfEmpty(new Cart("My Cart")))
+                        .modelAttribute("items", inventoryService.getInventory())
+                        .modelAttribute("cart", cartService.findById("My Cart").defaultIfEmpty(new Cart("My Cart")))
                         .build()
         );
     }
@@ -47,7 +41,7 @@ public class HomeController {
         return Mono.just(
                 Rendering.view("home")
                         .modelAttribute("items", inventoryService.searchByFluentExample(name, description, useAnd))
-                        .modelAttribute("cart", cartRepository.findById("My Cart").defaultIfEmpty(new Cart("My Cart")))
+                        .modelAttribute("cart", cartService.findById("My Cart").defaultIfEmpty(new Cart("My Cart")))
                         .build()
         );
     }

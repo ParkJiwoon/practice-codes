@@ -39,4 +39,8 @@ public class CartService {
                 .flatMap(cartRepository::save)
                 .log("saveCart");
     }
+
+    public Mono<Cart> findById(String cartId) {
+        return cartRepository.findById(cartId);
+    }
 }
