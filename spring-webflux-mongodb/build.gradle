@@ -12,6 +12,19 @@ repositories {
     mavenCentral()
 }
 
+/**
+ * layered 옵션은 2.3.0 부터 deprecated 되고 기본값으로 활성화 되었다.
+ * (https://docs.spring.io/spring-boot/docs/current/gradle-plugin/api/org/springframework/boot/gradle/tasks/bundling/BootJar.html#layered--)
+ *
+ * layered 옵션을 끄고 싶다면 아래 코드를 사용하면 된다.
+ * (https://docs.spring.io/spring-boot/docs/current/gradle-plugin/reference/htmlsingle/#packaging-executable.configuring.layered-archives)
+ */
+//bootJar {
+//    layered {
+//        enabled = false
+//    }
+//}
+
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-mongodb-reactive'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
