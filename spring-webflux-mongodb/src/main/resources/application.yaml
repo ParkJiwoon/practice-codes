@@ -25,3 +25,8 @@ management:
   endpoint:
     health:
       show-details: always
+  endpoints:
+    web:
+      exposure:
+        # actuator 엔드포인트 추가
+        include: httptrace, health
