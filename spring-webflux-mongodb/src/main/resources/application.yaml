@@ -4,10 +4,10 @@ spring:
       filter:
         enabled: true
 
-  data:
-    mongodb:
-      host: localhost
-      port: 27017
+#  data:
+#    mongodb:
+#      host: localhost
+#      port: 27017
 
   devtools:
     restart:
