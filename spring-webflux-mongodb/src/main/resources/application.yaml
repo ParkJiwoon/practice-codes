@@ -18,3 +18,10 @@ spring:
 logging:
   level:
     web: DEBUG
+
+# 서버 상태의 세부 정보를 표시하는 설정
+# http://localhost:8080/actuator/health 에 접속했을 때 더 자세한 정보를 알려줌
+management:
+  endpoint:
+    health:
+      show-details: always
