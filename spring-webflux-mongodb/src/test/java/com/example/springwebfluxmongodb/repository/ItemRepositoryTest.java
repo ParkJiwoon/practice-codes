@@ -4,7 +4,7 @@ import com.example.springwebfluxmongodb.entity.Item;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import reactor.test.StepVerifier;
 
 import static org.assertj.core.api.Assertions.*;
@@ -14,7 +14,7 @@ import static org.assertj.core.api.Assertions.*;
  *                   그 외에 @Component 어노테이션이 붙은 다른 빈 정의를 무시해서 테스트 속도 향상
  *                   @ExtendWith(SpringExtension.class) 을 포함하고 있기 때문에 JUnit 5 사용 가능
  */
-@DataMongoTest
+@SpringBootTest
 public class ItemRepositoryTest {
 
     @Autowired

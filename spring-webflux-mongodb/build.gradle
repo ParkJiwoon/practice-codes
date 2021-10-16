@@ -2,6 +2,9 @@ plugins {
     id 'org.springframework.boot' version '2.5.3'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
+    // gradle 7 부터는 org.asciidoctor.convert 대신 asciidoctor.jvm.convert 사용
+    // adoc 파일 변환 후 build 디렉토리에 복사
+    id "org.asciidoctor.jvm.convert" version "3.3.2"
 }
 
 group = 'com.example'
@@ -25,6 +28,10 @@ repositories {
 //    }
 //}
 
+configurations {
+    asciidoctorExt
+}
+
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-mongodb-reactive'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
@@ -36,9 +43,46 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'de.flapdoodle.embed:de.flapdoodle.embed.mongo'
     testImplementation 'io.projectreactor:reactor-test'
+
+    // Spring Rest Docs 설정: https://docs.spring.io/spring-restdocs/docs/current/reference/html5/
+    // asciidoctor 가 안되어서 추가 https://github.com/spring-projects/spring-restdocs/issues/680
+    asciidoctorExt 'org.springframework.restdocs:spring-restdocs-asciidoctor'
+    testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
+    testImplementation 'org.springframework.restdocs:spring-restdocs-webtestclient'
+
 //    testImplementation 'io.projectreactor.tools:blockhound-junit-platform:1.0.6.RELEASE'
 }
 
 test {
     useJUnitPlatform()
+}
+
+// 스니펫이 생성될 위치 지정: build/generated-snippets
+ext {
+    snippetsDir = file('build/generated-snippets')
+}
+
+// asciidoctor 태스크 구성
+asciidoctor {
+    configurations 'asciidoctorExt'
+
+    // 입력 snippets 이 생성될 위치 지정
+    inputs.dir snippetsDir
+    // 문서가 만들어지기 전에 test 가 실행되도록 의존성 걸어준다
+    dependsOn test
+}
+
+/**
+ * /build/docs/asciidoc/index.html 이 생성되지 않는 이슈는 index.adoc 위치 문제
+ * (https://blog.hodory.dev/2019/12/04/spring-rest-docs-with-gradle-not-working-html5/)
+ *
+ *
+ */
+bootJar {
+    dependsOn asciidoctor
+
+    // jar static 폴더에 생긴 HTML 파일을 /static/docs 에 넣어줌
+    from ("build/docs/asciidoc/") {
+        into 'src/main/resources/static/docs'
+    }
 }

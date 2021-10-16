@@ -27,12 +27,12 @@ public class ActuatorConfig {
      * 인스턴스를 재시작하면 그동안의 트레이스 정보가 소멸됨
      * 만약 클라우드에서 여러 대의 노드에 수십만 사용자의 웹 요청을 추적하고 싶다면 HttpTraceRepository 구현체를 직접 만들어야 함
      */
-    HttpTraceRepository traceRepository() {
+    public HttpTraceRepository traceRepository() {
         return new InMemoryHttpTraceRepository();
     }
 
     @Bean
-    HttpTraceRepository springDataTraceRepository(HttpTraceWrapperRepository repository) {
+    public HttpTraceRepository springDataTraceRepository(HttpTraceWrapperRepository repository) {
         return new SpringDataHttpTraceRepository(repository);
     }
 

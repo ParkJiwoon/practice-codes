@@ -7,3 +7,10 @@ spring:
       # 테스트 코드 실행할 때는 port 를 0 으로 설정해줘야 랜덤하게 하나를 선택한다고 함
       # https://stackoverflow.com/questions/31568351/how-do-you-configure-embedded-mongdb-for-integration-testing-in-a-spring-boot-ap 참고
       port: 0
+
+
+  # 아래와 같은 에러로그가 떠서 검색
+  # Unable to start ServletWebServerApplicationContext due to missing ServletWebServerFactory bean.
+  # Solution : https://www.baeldung.com/spring-boot-application-context-exception
+  main:
+    web-application-type: reactive
