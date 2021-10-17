@@ -38,6 +38,12 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.mongodb:mongodb-driver-sync'
+
+    // HATEOAS 는 원래 스프링 MVC 를 지원하도록 만들어져 있으므로 제외 필요
+    implementation('org.springframework.boot:spring-boot-starter-hateoas') {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-web'
+    }
+
     compileOnly 'io.projectreactor.tools:blockhound:1.0.6.RELEASE'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
