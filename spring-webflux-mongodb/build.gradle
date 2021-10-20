@@ -44,8 +44,17 @@ dependencies {
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-web'
     }
 
+    // rabbit mq
+    implementation 'org.springframework.boot:spring-boot-starter-amqp'
+
     compileOnly 'io.projectreactor.tools:blockhound:1.0.6.RELEASE'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    // testcontainers
+    implementation platform('org.testcontainers:testcontainers-bom:1.16.0')
+    testImplementation 'org.testcontainers:rabbitmq'
+    testImplementation 'org.testcontainers:junit-jupiter'
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'de.flapdoodle.embed:de.flapdoodle.embed.mongo'
     testImplementation 'io.projectreactor:reactor-test'
