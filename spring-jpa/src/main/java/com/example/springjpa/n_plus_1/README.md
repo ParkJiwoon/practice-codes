@@ -1,0 +1,1 @@
+- [JPA 1 + N 문제와 페이징 처리에 대한 고민](https://github.com/ParkJiwoon/PrivateStudy/blob/master/spring/jpa-n-plus-1-and-paging.md) 참고
