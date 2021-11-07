@@ -1,8 +1,8 @@
 import './App.css';
-import IterationSample from './IterationSample';
+import TodoApp from "./ch10-todo-app/components/TodoApp";
 
 function App() {
-  return <IterationSample />
+  return <TodoApp />
 }
 
 export default App;
