@@ -1,0 +1,24 @@
+@import "SassUtils";
+
+.SassComponent {
+  display: flex;
+  background: $oc-gray-2;
+  @include media("<768px") {
+    background: $oc-gray-9;
+  }
+
+  // 클래스 내부의 클래스
+  .box {
+
+    // .red 클래스가 .box 와 함께 사용 ex) className="box red"
+    &.red {
+      background: $red;
+      @include square(1);
+    }
+
+    // .box 에 마우스를 올렸을 때
+    &:hover {
+      background: black;
+    }
+  }
+}
