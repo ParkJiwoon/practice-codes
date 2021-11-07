@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function UseStateSample() {
+export default function UseStateSample() {
   const [value, setValue] = useState(0);
   const [name, setName] = useState('');
 
@@ -17,5 +17,3 @@ function UseStateSample() {
     </div>
   )
 }
-
-export default UseStateSample;
