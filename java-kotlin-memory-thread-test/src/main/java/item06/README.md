@@ -1,0 +1,1 @@
+- [Effective Java Item 06. 불필요한 객체 생성을 피하라](https://github.com/ParkJiwoon/PrivateStudy/blob/master/java/effective-java/item-06.md)
