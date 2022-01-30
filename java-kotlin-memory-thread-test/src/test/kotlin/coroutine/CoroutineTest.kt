@@ -23,6 +23,8 @@ class CoroutineTest {
             }
 
             val afterThreadCount = Thread.activeCount()
+
+            // 현재 서브루틴 1000 개가 생성되어 있지만 쓰레드 갯수는 이전과 동일
             assertEquals(beforeThreadCount, afterThreadCount)
 
             // 코루틴 전부 종료
@@ -45,6 +47,8 @@ class CoroutineTest {
         }
 
         val afterThreadCount = Thread.activeCount()
+
+        // 쓰레드 1000 개가 새로 생성되었다
         assertEquals(afterThreadCount - beforeThreadCount, 1000)
 
         // 쓰레드 전부 종료
