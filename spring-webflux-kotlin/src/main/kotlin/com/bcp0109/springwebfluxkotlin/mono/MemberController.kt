@@ -1,20 +1,22 @@
 package com.bcp0109.springwebfluxkotlin.mono
 
 import com.bcp0109.springwebfluxkotlin.domain.Member
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RequestParam
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.*
 import org.springframework.web.client.RestTemplate
 import reactor.core.publisher.Mono
 
 @RestController
+@RequestMapping("/v1")
 class MemberController(
     private val memberService: MemberService
 ) {
-    @GetMapping("/")
-    fun home(): Mono<String> {
-        return Mono.just("Home")
+
+    @GetMapping("/home")
+    fun home(): Mono<ResponseEntity<String>> {
+        return Mono.just(
+            ResponseEntity.ok().body("Home")
+        )
     }
 
     @GetMapping("/google")
@@ -24,18 +26,24 @@ class MemberController(
         return Mono.just(response!!)
     }
 
-    @GetMapping("/members")
+    @GetMapping("/signup")
     fun signup(
         @RequestParam name: String,
         @RequestParam age: Int
-    ): Mono<Member> {
+    ): Mono<ResponseEntity<Member>> {
         return memberService.signup(name, age)
+            .flatMap {
+                Mono.just(ResponseEntity.ok(it))
+            }
     }
 
     @GetMapping("/members/{memberId}")
     fun findMember(
         @PathVariable("memberId") memberId: Long
-    ): Mono<Member> {
+    ): Mono<ResponseEntity<Member>> {
         return memberService.findMemberById(memberId)
+                .flatMap {
+                    Mono.just(ResponseEntity.ok(it))
+                }
     }
 }
