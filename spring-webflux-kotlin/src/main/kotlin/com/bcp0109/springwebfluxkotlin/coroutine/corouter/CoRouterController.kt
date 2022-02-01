@@ -1,0 +1,49 @@
+package com.bcp0109.springwebfluxkotlin.coroutine.corouter
+
+import com.bcp0109.springwebfluxkotlin.coroutine.CoroutineMemberService
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.client.RestTemplate
+import org.springframework.web.reactive.function.server.*
+
+@RestController
+class CoRouterController(
+    private val memberService: CoroutineMemberService
+) {
+    val log: Logger = LoggerFactory.getLogger(CoRouterController::class.java)
+
+    suspend fun home(request: ServerRequest): ServerResponse {
+        return ServerResponse.ok().json().bodyValueAndAwait("home")
+    }
+
+    suspend fun google(request: ServerRequest): ServerResponse {
+        val template = RestTemplate()
+        val response = template.getForObject("http://www.google.com", String::class.java)
+        return ServerResponse.ok().json().bodyValueAndAwait(response!!)
+    }
+
+    suspend fun signup(request: ServerRequest): ServerResponse {
+        val name = request.queryParamOrNull("name")
+        val age = request.queryParamOrNull("age")?.toInt()
+
+        name ?: log.error("No Parameter Name")
+        age ?: log.error("No Parameter Age")
+
+        return ServerResponse.ok().json().bodyValueAndAwait(
+            memberService.signup(name!!, age!!)
+        )
+    }
+
+    suspend fun findMember(request: ServerRequest): ServerResponse {
+        val memberId = request.pathVariable("memberId").toLong()
+        val member = memberService.findMemberById(memberId)
+
+        return ServerResponse.ok().json().bodyValueAndAwait(member ?: "Not Found Member $memberId")
+    }
+
+    suspend fun findAll(request: ServerRequest): ServerResponse {
+        val members = memberService.findAll()
+        return ServerResponse.ok().json().bodyAndAwait(members)
+    }
+}
