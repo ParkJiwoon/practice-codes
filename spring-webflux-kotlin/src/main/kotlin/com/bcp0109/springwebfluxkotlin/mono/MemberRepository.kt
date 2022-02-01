@@ -1,5 +1,6 @@
-package com.bcp0109.springwebfluxkotlin.domain
+package com.bcp0109.springwebfluxkotlin.mono
 
+import com.bcp0109.springwebfluxkotlin.domain.Member
 import reactor.core.publisher.Mono
 
 interface MemberRepository {

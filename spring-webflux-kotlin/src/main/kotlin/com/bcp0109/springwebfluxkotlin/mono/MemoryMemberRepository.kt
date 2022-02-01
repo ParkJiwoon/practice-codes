@@ -1,5 +1,6 @@
-package com.bcp0109.springwebfluxkotlin.domain
+package com.bcp0109.springwebfluxkotlin.mono
 
+import com.bcp0109.springwebfluxkotlin.domain.Member
 import org.springframework.stereotype.Repository
 import reactor.core.publisher.Mono
 import java.util.concurrent.ConcurrentHashMap
