@@ -2,11 +2,12 @@ package com.bcp0109.springwebfluxkotlin.mono
 
 import com.bcp0109.springwebfluxkotlin.domain.Member
 import org.springframework.http.ResponseEntity
+import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.client.RestTemplate
 import reactor.core.publisher.Mono
 
-@RestController
+@Controller
 @RequestMapping("/v1")
 class MemberController(
     private val memberService: MemberService

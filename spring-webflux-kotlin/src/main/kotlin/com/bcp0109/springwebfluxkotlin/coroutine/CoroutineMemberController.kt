@@ -4,10 +4,11 @@ import com.bcp0109.springwebfluxkotlin.domain.Member
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
 import org.springframework.http.ResponseEntity
+import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.client.RestTemplate
 
-@RestController
+@Controller
 @RequestMapping("/v2")
 class CoroutineMemberController(
     private val memberService: CoroutineMemberService
