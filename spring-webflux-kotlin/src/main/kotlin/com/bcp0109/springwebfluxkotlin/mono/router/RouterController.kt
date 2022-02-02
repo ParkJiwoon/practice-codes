@@ -1,5 +1,4 @@
 package com.bcp0109.springwebfluxkotlin.mono.router
-import com.bcp0109.springwebfluxkotlin.coroutine.corouter.CoRouterController
 import com.bcp0109.springwebfluxkotlin.mono.MemberService
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -12,7 +11,7 @@ import reactor.core.publisher.Mono
 class RouterController(
     private val memberService: MemberService
 ) {
-    val log: Logger = LoggerFactory.getLogger(CoRouterController::class.java)
+    val log: Logger = LoggerFactory.getLogger(RouterController::class.java)
 
     fun home(request: ServerRequest): Mono<ServerResponse> {
         return ServerResponse.ok().json().body(
