@@ -5,11 +5,14 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Controller
 import org.springframework.web.client.RestTemplate
+import org.springframework.web.reactive.function.client.WebClient
+import org.springframework.web.reactive.function.client.awaitBody
+import org.springframework.web.reactive.function.client.awaitExchange
 import org.springframework.web.reactive.function.server.*
 
 @Controller
 class CoRouterController(
-    private val memberService: CoroutineMemberService
+    private val memberService: CoroutineMemberService,
 ) {
     val log: Logger = LoggerFactory.getLogger(CoRouterController::class.java)
 
@@ -21,6 +24,17 @@ class CoRouterController(
         val template = RestTemplate()
         val response = template.getForObject("http://www.google.com", String::class.java)
         return ServerResponse.ok().json().bodyValueAndAwait(response!!)
+    }
+
+    suspend fun google2(request: ServerRequest): ServerResponse {
+        val webClient = WebClient.builder().build()
+
+        val response = webClient.get()
+            .uri("http://www.google.com")
+            .retrieve()
+            .awaitBody<String>()
+
+        return ServerResponse.ok().json().bodyValueAndAwait(response)
     }
 
     suspend fun signup(request: ServerRequest): ServerResponse {

@@ -12,6 +12,7 @@ class CoRouterConfig {
         "/v3".nest {
             GET("/home", controller::home)
             GET("/google", controller::google)
+            GET("/google2", controller::google2)
             GET("/signup", controller::signup)
             GET("/members/{memberId}", controller::findMember)
             GET("/members", controller::findAll)
