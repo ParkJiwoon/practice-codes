@@ -1,6 +1,7 @@
 package com.bcp0109.springwebfluxkotlin.coroutine.corouter
 
 import com.bcp0109.springwebfluxkotlin.coroutine.CoroutineMemberService
+import com.bcp0109.springwebfluxkotlin.domain.Member
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Controller
@@ -17,16 +18,19 @@ class CoRouterController(
     val log: Logger = LoggerFactory.getLogger(CoRouterController::class.java)
 
     suspend fun home(request: ServerRequest): ServerResponse {
+        log.info("$request")
         return ServerResponse.ok().json().bodyValueAndAwait("home")
     }
 
     suspend fun google(request: ServerRequest): ServerResponse {
+        log.info("$request")
         val template = RestTemplate()
         val response = template.getForObject("http://www.google.com", String::class.java)
         return ServerResponse.ok().json().bodyValueAndAwait(response!!)
     }
 
     suspend fun google2(request: ServerRequest): ServerResponse {
+        log.info("$request")
         val webClient = WebClient.builder().build()
 
         val response = webClient.get()
@@ -38,6 +42,7 @@ class CoRouterController(
     }
 
     suspend fun signup(request: ServerRequest): ServerResponse {
+        log.info("$request")
         val name = request.queryParamOrNull("name")
         val age = request.queryParamOrNull("age")?.toInt()
 
@@ -49,7 +54,17 @@ class CoRouterController(
         )
     }
 
+    suspend fun signup2(request: ServerRequest): ServerResponse {
+        log.info("$request")
+        val requestBody = request.awaitBody<Member>()
+
+        return ServerResponse.ok().json().bodyValueAndAwait(
+            memberService.signup(requestBody.name, requestBody.age)
+        )
+    }
+
     suspend fun findMember(request: ServerRequest): ServerResponse {
+        log.info("$request")
         val memberId = request.pathVariable("memberId").toLong()
         val member = memberService.findMemberById(memberId)
 
@@ -57,6 +72,7 @@ class CoRouterController(
     }
 
     suspend fun findAll(request: ServerRequest): ServerResponse {
+        log.info("$request")
         val members = memberService.findAll()
         return ServerResponse.ok().json().bodyAndAwait(members)
     }

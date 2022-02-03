@@ -10,11 +10,7 @@ import reactor.core.publisher.Mono
 class MyFilter : WebFilter {
 
     override fun filter(exchange: ServerWebExchange, chain: WebFilterChain): Mono<Void> {
-        println("woody log start")
-        println(exchange.request.queryParams)
-        println(exchange.response.statusCode)
-        println("woody log end")
-
+        println("This is MyFilter : WebFilter")
         return chain.filter(exchange)
     }
 }
