@@ -4,7 +4,9 @@ import com.bcp0109.spring_boot_aop.ExamService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Import;
 
+@Import(TraceAspect.class)
 @SpringBootTest
 public class ExamTest {
 
