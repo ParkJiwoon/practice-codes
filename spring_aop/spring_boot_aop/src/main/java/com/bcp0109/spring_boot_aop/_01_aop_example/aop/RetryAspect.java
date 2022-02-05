@@ -1,6 +1,6 @@
-package com.bcp0109.spring_boot_aop.aop;
+package com.bcp0109.spring_boot_aop._01_aop_example.aop;
 
-import com.bcp0109.spring_boot_aop.annotation.Retry;
+import com.bcp0109.spring_boot_aop._01_aop_example.annotation.Retry;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;

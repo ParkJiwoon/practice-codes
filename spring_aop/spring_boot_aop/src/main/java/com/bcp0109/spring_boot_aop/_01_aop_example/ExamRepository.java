@@ -1,7 +1,7 @@
-package com.bcp0109.spring_boot_aop;
+package com.bcp0109.spring_boot_aop._01_aop_example;
 
-import com.bcp0109.spring_boot_aop.annotation.Retry;
-import com.bcp0109.spring_boot_aop.annotation.Trace;
+import com.bcp0109.spring_boot_aop._01_aop_example.annotation.Retry;
+import com.bcp0109.spring_boot_aop._01_aop_example.annotation.Trace;
 import org.springframework.stereotype.Repository;
 
 @Repository

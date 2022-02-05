@@ -1,6 +1,7 @@
-package com.bcp0109.spring_boot_aop.aop;
+package com.bcp0109.spring_boot_aop._01_aop_example;
 
-import com.bcp0109.spring_boot_aop.ExamService;
+import com.bcp0109.spring_boot_aop._01_aop_example.aop.RetryAspect;
+import com.bcp0109.spring_boot_aop._01_aop_example.aop.TraceAspect;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
