@@ -1,5 +1,6 @@
 package com.bcp0109.spring_boot_aop;
 
+import com.bcp0109.spring_boot_aop.annotation.Retry;
 import com.bcp0109.spring_boot_aop.annotation.Trace;
 import org.springframework.stereotype.Repository;
 
@@ -12,6 +13,7 @@ public class ExamRepository {
      * 5번에 1번 실패하는 요청
      */
     @Trace
+    @Retry(value = 4)
     public String save(String itemId) {
         seq++;
         if (seq % 5 == 0) {
