@@ -1,2 +1,2 @@
 fun Shop.getSetOfCustomers(): Set<Customer> =
-        TODO()
+        this.customers.toSet()
