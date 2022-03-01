@@ -1,4 +1,4 @@
-package com.bcp0109.spring_boot_aop._05_aop_basic_example;
+package com.bcp0109.spring_boot_aop._06_aop_basic_example;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -6,14 +6,12 @@ import org.junit.jupiter.api.Test;
 import org.springframework.aop.support.AopUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Import;
 
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.assertj.core.api.Assertions.*;
 
-@Import(AspectV2.class)
 @SpringBootTest
-@DisplayName("스프링 AOP 를 적용해서 로그 추가 - @Pointcut 어노테이션으로 표현식 분리")
-public class Aop2Test {
+@DisplayName("스프링 AOP 가 적용되지 않은 기본 테스트")
+public class Aop0Test {
 
     @Autowired
     private OrderService orderService;
@@ -22,13 +20,13 @@ public class Aop2Test {
     private OrderRepository orderRepository;
 
     @Test
-    @DisplayName("프록시 적용된 상태")
+    @DisplayName("프록시 적용되어 있지 않은 상태")
     void aopInfo() {
         System.out.println("isAopProxy, orderService=" + AopUtils.isAopProxy(orderService));
         System.out.println("isAopProxy, orderRepository=" + AopUtils.isAopProxy(orderRepository));
 
-        Assertions.assertTrue(AopUtils.isAopProxy(orderService));
-        Assertions.assertTrue(AopUtils.isAopProxy(orderRepository));
+        Assertions.assertFalse(AopUtils.isAopProxy(orderService));
+        Assertions.assertFalse(AopUtils.isAopProxy(orderRepository));
     }
 
     @Test

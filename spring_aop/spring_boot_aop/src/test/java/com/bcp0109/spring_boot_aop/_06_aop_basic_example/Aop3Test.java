@@ -1,4 +1,4 @@
-package com.bcp0109.spring_boot_aop._05_aop_basic_example;
+package com.bcp0109.spring_boot_aop._06_aop_basic_example;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -10,10 +10,10 @@ import org.springframework.context.annotation.Import;
 
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
-@Import(AspectV1.class)
+@Import(AspectV3.class)
 @SpringBootTest
-@DisplayName("스프링 AOP 를 적용해서 로그 추가")
-public class Aop1Test {
+@DisplayName("스프링 AOP 를 포인트컷으로 분리해서 Log, Transaction 각각 정의")
+public class Aop3Test {
 
     @Autowired
     private OrderService orderService;
@@ -32,6 +32,7 @@ public class Aop1Test {
     }
 
     @Test
+    @DisplayName("OrderService 는 로그, 트랜잭션 둘다 적용하고 OrderRepository 는 로그만 적용")
     void success() {
         orderService.orderItem("itemA");
     }

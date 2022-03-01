@@ -1,4 +1,4 @@
-package com.bcp0109.spring_boot_aop._05_aop_basic_example;
+package com.bcp0109.spring_boot_aop._06_aop_basic_example;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -8,9 +8,9 @@ import org.aspectj.lang.annotation.*;
 public class AspectV6Advice {
 
     /**
-     *  
+     *
      */
-    @Around("com.bcp0109.spring_boot_aop._05_aop_basic_example.Pointcuts.orderAndService()")
+    @Around("com.bcp0109.spring_boot_aop._06_aop_basic_example.Pointcuts.orderAndService()")
     public Object doTransaction(ProceedingJoinPoint joinPoint) throws Throwable {
         try {
             // @Before
@@ -28,22 +28,22 @@ public class AspectV6Advice {
         }
     }
 
-    @Before("com.bcp0109.spring_boot_aop._05_aop_basic_example.Pointcuts.orderAndService()")
+    @Before("com.bcp0109.spring_boot_aop._06_aop_basic_example.Pointcuts.orderAndService()")
     public void doBefore(JoinPoint joinPoint) {
         System.out.println("[before] " + joinPoint.getSignature());
     }
 
-    @AfterReturning(value = "com.bcp0109.spring_boot_aop._05_aop_basic_example.Pointcuts.orderAndService()", returning = "result")
+    @AfterReturning(value = "com.bcp0109.spring_boot_aop._06_aop_basic_example.Pointcuts.orderAndService()", returning = "result")
     public void doReturn(JoinPoint joinPoint, Object result) {
         System.out.println("[return] " + joinPoint.getSignature() + " return=" + result);
     }
 
-    @AfterThrowing(value = "com.bcp0109.spring_boot_aop._05_aop_basic_example.Pointcuts.orderAndService()", throwing = "ex")
+    @AfterThrowing(value = "com.bcp0109.spring_boot_aop._06_aop_basic_example.Pointcuts.orderAndService()", throwing = "ex")
     public void doThrowing(JoinPoint joinPoint, Exception ex) {
         System.out.println("[ex] " + joinPoint.getSignature() + " message=" + ex.getMessage());
     }
 
-    @After("com.bcp0109.spring_boot_aop._05_aop_basic_example.Pointcuts.orderAndService()")
+    @After("com.bcp0109.spring_boot_aop._06_aop_basic_example.Pointcuts.orderAndService()")
     public void doAfter(JoinPoint joinPoint) {
         System.out.println("[after] " + joinPoint.getSignature());
     }

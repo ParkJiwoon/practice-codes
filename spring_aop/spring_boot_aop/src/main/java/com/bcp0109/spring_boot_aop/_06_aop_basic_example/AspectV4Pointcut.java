@@ -1,4 +1,4 @@
-package com.bcp0109.spring_boot_aop._05_aop_basic_example;
+package com.bcp0109.spring_boot_aop._06_aop_basic_example;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -7,7 +7,7 @@ import org.aspectj.lang.annotation.Aspect;
 @Aspect
 public class AspectV4Pointcut {
 
-    @Around("com.bcp0109.spring_boot_aop._05_aop_basic_example.Pointcuts.allOrder()")
+    @Around("com.bcp0109.spring_boot_aop._06_aop_basic_example.Pointcuts.allOrder()")
     public Object doLog(ProceedingJoinPoint joinPoint) throws Throwable {
         System.out.println("[log] " + joinPoint.getSignature());    // join point 시그니처
         return joinPoint.proceed();
@@ -20,7 +20,7 @@ public class AspectV4Pointcut {
      * doTransaction() 은 OrderService 에만 적용됨
      * doLog() 는 둘다 적용됨
      */
-    @Around("com.bcp0109.spring_boot_aop._05_aop_basic_example.Pointcuts.orderAndService()")
+    @Around("com.bcp0109.spring_boot_aop._06_aop_basic_example.Pointcuts.orderAndService()")
     public Object doTransaction(ProceedingJoinPoint joinPoint) throws Throwable {
         try {
             System.out.println("[트랜잭션 시작] " + joinPoint.getSignature());

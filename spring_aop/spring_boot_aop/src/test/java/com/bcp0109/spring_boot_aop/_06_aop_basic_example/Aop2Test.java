@@ -1,4 +1,4 @@
-package com.bcp0109.spring_boot_aop._05_aop_basic_example;
+package com.bcp0109.spring_boot_aop._06_aop_basic_example;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -10,10 +10,10 @@ import org.springframework.context.annotation.Import;
 
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
-@Import(AspectV4Pointcut.class)
+@Import(AspectV2.class)
 @SpringBootTest
-@DisplayName("스프링 AOP 에서 포인트컷을 별도로 선언한 후 Aspect 에 적용")
-public class Aop4Test {
+@DisplayName("스프링 AOP 를 적용해서 로그 추가 - @Pointcut 어노테이션으로 표현식 분리")
+public class Aop2Test {
 
     @Autowired
     private OrderService orderService;
@@ -32,7 +32,6 @@ public class Aop4Test {
     }
 
     @Test
-    @DisplayName("OrderService 는 로그, 트랜잭션 둘다 적용하고 OrderRepository 는 로그만 적용")
     void success() {
         orderService.orderItem("itemA");
     }

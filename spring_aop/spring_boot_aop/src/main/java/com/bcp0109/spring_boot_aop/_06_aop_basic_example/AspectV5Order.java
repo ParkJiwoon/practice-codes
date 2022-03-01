@@ -1,4 +1,4 @@
-package com.bcp0109.spring_boot_aop._05_aop_basic_example;
+package com.bcp0109.spring_boot_aop._06_aop_basic_example;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -11,7 +11,7 @@ public class AspectV5Order {
     @Order(2)
     public static class LogAspect {
 
-        @Around("com.bcp0109.spring_boot_aop._05_aop_basic_example.Pointcuts.allOrder()")
+        @Around("com.bcp0109.spring_boot_aop._06_aop_basic_example.Pointcuts.allOrder()")
         public Object doLog(ProceedingJoinPoint joinPoint) throws Throwable {
             System.out.println("[log] " + joinPoint.getSignature());    // join point 시그니처
             return joinPoint.proceed();
@@ -22,7 +22,7 @@ public class AspectV5Order {
     @Order(1)
     public static class TxAspect {
 
-        @Around("com.bcp0109.spring_boot_aop._05_aop_basic_example.Pointcuts.orderAndService()")
+        @Around("com.bcp0109.spring_boot_aop._06_aop_basic_example.Pointcuts.orderAndService()")
         public Object doTransaction(ProceedingJoinPoint joinPoint) throws Throwable {
             try {
                 System.out.println("[트랜잭션 시작] " + joinPoint.getSignature());
