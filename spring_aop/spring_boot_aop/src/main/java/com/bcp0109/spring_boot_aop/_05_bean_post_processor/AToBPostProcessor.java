@@ -1,7 +1,7 @@
-package com.bcp0109.spring_boot_aop._04_bean_post_processor;
+package com.bcp0109.spring_boot_aop._05_bean_post_processor;
 
-import com.bcp0109.spring_boot_aop._04_bean_post_processor.basic.BasicA;
-import com.bcp0109.spring_boot_aop._04_bean_post_processor.basic.BasicB;
+import com.bcp0109.spring_boot_aop._05_bean_post_processor.basic.BasicA;
+import com.bcp0109.spring_boot_aop._05_bean_post_processor.basic.BasicB;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 
