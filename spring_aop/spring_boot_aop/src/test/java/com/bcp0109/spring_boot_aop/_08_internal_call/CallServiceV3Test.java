@@ -1,6 +1,6 @@
-package com.bcp0109.spring_boot_aop._07_internal_call;
+package com.bcp0109.spring_boot_aop._08_internal_call;
 
-import com.bcp0109.spring_boot_aop._07_internal_call.aop.CallLogAspect;
+import com.bcp0109.spring_boot_aop._08_internal_call.aop.CallLogAspect;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
