@@ -1,4 +1,4 @@
-package com.bcp0109.spring_boot_aop._01_aop_example.annotation;
+package com.bcp0109.spring_boot_aop._06_aop_advanced_example.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

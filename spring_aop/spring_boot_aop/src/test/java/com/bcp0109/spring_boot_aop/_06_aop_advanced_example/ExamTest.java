@@ -1,7 +1,7 @@
-package com.bcp0109.spring_boot_aop._01_aop_example;
+package com.bcp0109.spring_boot_aop._06_aop_advanced_example;
 
-import com.bcp0109.spring_boot_aop._01_aop_example.aop.RetryAspect;
-import com.bcp0109.spring_boot_aop._01_aop_example.aop.TraceAspect;
+import com.bcp0109.spring_boot_aop._06_aop_advanced_example.aop.RetryAspect;
+import com.bcp0109.spring_boot_aop._06_aop_advanced_example.aop.TraceAspect;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
