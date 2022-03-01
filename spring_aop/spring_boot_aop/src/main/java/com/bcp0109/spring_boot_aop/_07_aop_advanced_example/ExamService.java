@@ -1,6 +1,6 @@
-package com.bcp0109.spring_boot_aop._06_aop_advanced_example;
+package com.bcp0109.spring_boot_aop._07_aop_advanced_example;
 
-import com.bcp0109.spring_boot_aop._06_aop_advanced_example.annotation.Trace;
+import com.bcp0109.spring_boot_aop._07_aop_advanced_example.annotation.Trace;
 import org.springframework.stereotype.Service;
 
 @Service

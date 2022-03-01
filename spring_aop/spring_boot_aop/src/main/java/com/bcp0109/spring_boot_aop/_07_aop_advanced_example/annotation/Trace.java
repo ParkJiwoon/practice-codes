@@ -1,4 +1,4 @@
-package com.bcp0109.spring_boot_aop._06_aop_advanced_example.annotation;
+package com.bcp0109.spring_boot_aop._07_aop_advanced_example.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,6 +7,5 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Retry {
-    int value() default 3;
+public @interface Trace {
 }
