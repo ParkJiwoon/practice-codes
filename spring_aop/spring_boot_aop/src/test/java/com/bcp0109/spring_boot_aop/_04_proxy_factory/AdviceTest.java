@@ -63,7 +63,7 @@ class AdviceTest {
         ServiceInterface target = new ServiceImpl();
 
         ProxyFactory proxyFactory = new ProxyFactory(target);
-        // proxyFactory.setProxyTargetClass(true);
+        proxyFactory.setProxyTargetClass(true);
         proxyFactory.addAdvice(new TimeAdvice());
 
         ServiceInterface proxy = (ServiceInterface) proxyFactory.getProxy();
