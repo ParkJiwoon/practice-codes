@@ -22,7 +22,7 @@ class BasicTest {
         basicA.helloA();
 
         // beaA 라는 이름으로도 가져올 수 있음
-        BasicA beanBasicA = applicationContext.getBean("beanA", BasicA.class);
+        BasicA beanBasicA = applicationContext.getBean("basicBeanA", BasicA.class);
         beanBasicA.helloA();
 
         assertThatExceptionOfType(NoSuchBeanDefinitionException.class)
