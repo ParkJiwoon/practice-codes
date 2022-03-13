@@ -9,5 +9,6 @@ class SpringWebfluxKotlinApplication
 
 fun main(args: Array<String>) {
     BlockHound.install()
+    System.setProperty("reactor.netty.ioWorkerCount", "1")
     runApplication<SpringWebfluxKotlinApplication>(*args)
 }
