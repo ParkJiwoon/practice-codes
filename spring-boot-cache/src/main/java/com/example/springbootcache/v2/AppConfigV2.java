@@ -15,12 +15,7 @@ public class AppConfigV2 {
     public PersonRepository cachePersonRepository() {
         return new CachePersonRepository(
                 new ConcurrentMapCache("local", new ConcurrentHashMap<>(), false),
-                realPersonRepository()
+                new RealPersonRepository()
         );
-    }
-
-    @Bean
-    public PersonRepository realPersonRepository() {
-        return new RealPersonRepository();
     }
 }
