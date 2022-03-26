@@ -1,11 +1,13 @@
 package com.example.springbootcache.v1;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Repository;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Slf4j
+@Repository
 public class RealPersonRepository implements PersonRepository {
     private final Map<Long, Person> store = new ConcurrentHashMap<>();
 

@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Import;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Import(AppConfigV1.class)
 @SpringBootTest
 public class PersonServiceTest {
 

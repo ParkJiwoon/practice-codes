@@ -5,6 +5,7 @@ import com.example.springbootcache.v1.PersonRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.Cache;
+import org.springframework.stereotype.Repository;
 
 @Slf4j
 @RequiredArgsConstructor
