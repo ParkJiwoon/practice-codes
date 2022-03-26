@@ -5,15 +5,10 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.cache.Cache;
-import org.springframework.cache.concurrent.ConcurrentMapCache;
-
-import java.util.concurrent.ConcurrentHashMap;
 
 @Slf4j
 @Aspect
 public class CacheAspect {
-
-    private final Cache cache = new ConcurrentMapCache("local", new ConcurrentHashMap<>(), false);
 
     /**
      * 읽기 캐시 적용
@@ -25,6 +20,7 @@ public class CacheAspect {
      */
     @Around("@annotation(cacheable)")
     public Object doCache(ProceedingJoinPoint joinPoint, CustomCacheable cacheable) throws Throwable {
+        Cache cache = getCache(cacheable);
         String key = joinPoint.getSignature() + cacheable.key();
         Cache.ValueWrapper valueWrapper = cache.get(key);
 
@@ -37,5 +33,10 @@ public class CacheAspect {
         cache.put(key, result);
         log.info("[CustomCacheable] result {}", result);
         return result;
+    }
+
+    private Cache getCache(CustomCacheable cacheable) {
+        String cacheName = cacheable.cacheName();
+        return CacheFactory.getCache(cacheName);
     }
 }
