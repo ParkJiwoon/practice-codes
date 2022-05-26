@@ -1,4 +1,4 @@
-package factory_method.model;
+package factory_method._02_simple_factory.model;
 
 public class Cat implements Pet {
 
