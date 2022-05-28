@@ -1,13 +1,12 @@
-package _01_simple_factory.factory;
+package _01_factory_method.simple_factory.factory;
 
-import _01_simple_factory.model.Cat;
-import _01_simple_factory.model.Dog;
-import _01_simple_factory.model.Pet;
-import _01_simple_factory.model.PetType;
+import _01_factory_method.simple_factory.model.Cat;
+import _01_factory_method.simple_factory.model.Dog;
+import _01_factory_method.simple_factory.model.Pet;
 
 public class PetFactory {
 
-    public Pet createPet(PetType petType) {
+    public Pet createPet(Pet.Type petType) {
         switch (petType) {
             case CAT:
                 return new Cat();
