@@ -1,4 +1,4 @@
-package _03_abstract_factory.staff_model;
+package _02_abstract_factory.staff_model;
 
 public class SoccerManager implements Manager {
 }

@@ -1,7 +1,7 @@
-package _03_abstract_factory.factory;
+package _02_abstract_factory.factory;
 
-import _03_abstract_factory.model.*;
-import _03_abstract_factory.staff_factory.StaffFactory;
+import _02_abstract_factory.model.*;
+import _02_abstract_factory.staff_factory.StaffFactory;
 
 public abstract class TeamFactory {
 

@@ -1,11 +1,11 @@
-package _03_abstract_factory;
+package _02_abstract_factory;
 
-import _03_abstract_factory.factory.BaseBallTeamFactory;
-import _03_abstract_factory.factory.SoccerTeamFactory;
-import _03_abstract_factory.factory.TeamFactory;
-import _03_abstract_factory.model.Team;
-import _03_abstract_factory.staff_factory.BaseBallStaffFactory;
-import _03_abstract_factory.staff_factory.SoccerStaffFactory;
+import _02_abstract_factory.factory.BaseBallTeamFactory;
+import _02_abstract_factory.factory.SoccerTeamFactory;
+import _02_abstract_factory.factory.TeamFactory;
+import _02_abstract_factory.model.Team;
+import _02_abstract_factory.staff_factory.BaseBallStaffFactory;
+import _02_abstract_factory.staff_factory.SoccerStaffFactory;
 
 public class AbstractFactoryApp {
     public static void main(String[] args) {

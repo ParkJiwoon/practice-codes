@@ -1,7 +1,7 @@
-package _03_abstract_factory.factory;
+package _02_abstract_factory.factory;
 
-import _03_abstract_factory.model.BaseBallTeam;
-import _03_abstract_factory.model.Team;
+import _02_abstract_factory.model.BaseBallTeam;
+import _02_abstract_factory.model.Team;
 
 public class BaseBallTeamFactory extends TeamFactory {
     @Override
