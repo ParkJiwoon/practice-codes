@@ -7,7 +7,6 @@ public abstract class UserFactory {
     public User newInstance() {
         User user = createUser();
         user.signup();
-        user.login();
         return user;
     }
 
