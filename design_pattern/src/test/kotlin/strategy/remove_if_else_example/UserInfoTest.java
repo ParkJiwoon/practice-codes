@@ -1,11 +1,12 @@
 package strategy.remove_if_else_example;
 
+import _04_strategy.remove_if_else_example.UserInfo;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import strategy.remove_if_else_example.filter.BetterFilter;
-import strategy.remove_if_else_example.specification.AgeSpec;
-import strategy.remove_if_else_example.specification.AndSpec;
-import strategy.remove_if_else_example.specification.NameSpec;
+import _04_strategy.remove_if_else_example.filter.BetterFilter;
+import _04_strategy.remove_if_else_example.specification.AgeSpec;
+import _04_strategy.remove_if_else_example.specification.AndSpec;
+import _04_strategy.remove_if_else_example.specification.NameSpec;
 
 import java.util.ArrayList;
 import java.util.Arrays;
