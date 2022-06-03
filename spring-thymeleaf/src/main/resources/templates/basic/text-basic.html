@@ -1,10 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
-$END$
+
+<h1>컨텐츠에 데이터 출력하기</h1>
+<ul>
+    <li>th:text 사용 <span th:text="${data}"></span></li>
+    <li>컨텐츠 안에서 직접 출력하기 = [[${data}]]</li>
+</ul>
+
 </body>
 </html>
