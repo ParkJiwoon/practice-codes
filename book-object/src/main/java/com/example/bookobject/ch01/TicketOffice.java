@@ -10,15 +10,19 @@ import java.util.List;
  */
 public class TicketOffice {
     private Long amount;
-    private List<Ticket> tickets = new ArrayList<>();
+    private final List<Ticket> tickets = new ArrayList<>();
 
     public TicketOffice(Long amount, List<Ticket> tickets) {
         this.amount = amount;
         this.tickets.addAll(tickets);
     }
 
+    public void sellTicketTo(Audience audience) {
+        plusAmount(audience.buy(getTicket()));
+    }
+
     /* 편의상 그냥 첫번째 티켓 반환 */
-    public Ticket getTicket() {
+    private Ticket getTicket() {
         return this.tickets.get(0);
     }
 
@@ -26,7 +30,7 @@ public class TicketOffice {
         this.amount -= amount;
     }
 
-    public void plusAmount(Long amount) {
+    private void plusAmount(Long amount) {
         this.amount += amount;
     }
 }

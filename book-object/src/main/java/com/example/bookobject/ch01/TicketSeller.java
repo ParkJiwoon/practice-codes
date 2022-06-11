@@ -5,13 +5,13 @@ package com.example.bookobject.ch01;
  * - ticketOffice: 자기가 일하는 매표소
  */
 public class TicketSeller {
-    private TicketOffice ticketOffice;
+    private final TicketOffice ticketOffice;
 
     public TicketSeller(TicketOffice ticketOffice) {
         this.ticketOffice = ticketOffice;
     }
 
-    public TicketOffice getTicketOffice() {
-        return ticketOffice;
+    public void sellTo(Audience audience) {
+        this.ticketOffice.sellTicketTo(audience);
     }
 }
