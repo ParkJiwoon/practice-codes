@@ -4,7 +4,6 @@ import _04_strategy._02_after.code.Context;
 import _04_strategy._02_after.code.Strategy;
 import _04_strategy._02_after.code.StrategyLogic1;
 import _04_strategy._02_after.code.StrategyLogic2;
-import strategy._02_after.code.*;
 
 public class AfterStrategyApp {
 
