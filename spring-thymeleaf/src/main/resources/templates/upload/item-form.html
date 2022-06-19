@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div class="container">
+    <div class="py-5 text-center">
+        <h2>상품 등록</h2>
+    </div>
+
+    <form th:action method="post" enctype="multipart/form-data">
+        <ul>
+            <li>첨부파일 <input type="file" name="attachFile" /></li>
+        </ul>
+
+        <input type="submit" />
+    </form>
+</div>
+</body>
+</html>

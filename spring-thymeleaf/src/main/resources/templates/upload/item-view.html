@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div class="container">
+  <div class="py-5 text-center">
+    <h2>상품 조회</h2>
+  </div>
+
+  첨부파일: <a th:if="${item.attachFile}" th:href="|/attach/${item.id}|" th:text="${item.getAttachFile().getUploadFileName()}"></a>
+    <br>
+    <img th:src="|/images/${imageFile.getStoreFileName()}|" width="300" height="300" />
+</div>
+</body>
+</html>
