@@ -9,21 +9,19 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class MemberService {
     private final MemberRepository memberRepository;
 
-    @Transactional(readOnly = true)
-    public MemberResponseDto getMemberInfo(String email) {
+    public MemberResponseDto findMemberInfoById(Long memberId) {
+        return memberRepository.findById(memberId)
+                .map(MemberResponseDto::of)
+                .orElseThrow(() -> new RuntimeException("로그인 유저 정보가 없습니다."));
+    }
+
+    public MemberResponseDto findMemberInfoByEmail(String email) {
         return memberRepository.findByEmail(email)
                 .map(MemberResponseDto::of)
                 .orElseThrow(() -> new RuntimeException("유저 정보가 없습니다."));
-    }
-
-    // 현재 SecurityContext 에 있는 유저 정보 가져오기
-    @Transactional(readOnly = true)
-    public MemberResponseDto getMyInfo() {
-        return memberRepository.findById(SecurityUtil.getCurrentMemberId())
-                .map(MemberResponseDto::of)
-                .orElseThrow(() -> new RuntimeException("로그인 유저 정보가 없습니다."));
     }
 }
