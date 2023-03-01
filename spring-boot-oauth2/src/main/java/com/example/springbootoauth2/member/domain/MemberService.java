@@ -10,18 +10,19 @@ import org.springframework.stereotype.Service;
 public class MemberService {
     private final MemberRepository memberRepository;
 
-    public Member findOrCreateMember(OauthMemberInfo oauthMemberInfo) {
+    public Long findOrCreateMember(OauthMemberInfo oauthMemberInfo) {
         return memberRepository.findByEmail(oauthMemberInfo.getEmail())
+                .map(Member::getId)
                 .orElseGet(() -> newMember(oauthMemberInfo));
     }
 
-    private Member newMember(OauthMemberInfo oauthMemberInfo) {
+    private Long newMember(OauthMemberInfo oauthMemberInfo) {
         Member member = Member.builder()
                 .email(oauthMemberInfo.getEmail())
                 .nickname(oauthMemberInfo.getNickname())
                 .type(oauthMemberInfo.getType())
                 .build();
 
-        return memberRepository.save(member);
+        return memberRepository.save(member).getId();
     }
 }

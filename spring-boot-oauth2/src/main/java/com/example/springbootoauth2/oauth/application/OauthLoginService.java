@@ -35,7 +35,7 @@ public class OauthLoginService {
     }
 
     private JwtTokens findMemberAndGenerateToken(OauthMemberInfo oauthMemberInfo) {
-        Member member = memberService.findOrCreateMember(oauthMemberInfo);
-        return jwtTokenGenerator.generate(member.getId().toString());
+        Long memberId = memberService.findOrCreateMember(oauthMemberInfo);
+        return jwtTokenGenerator.generate(memberId.toString());
     }
 }
