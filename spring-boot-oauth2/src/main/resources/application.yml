@@ -6,3 +6,8 @@ oauth:
     url:
       auth: https://kauth.kakao.com
       api: https://kapi.kakao.com
+  naver:
+    secret: ZP2xGYxKSn
+    url:
+      auth: https://nid.naver.com
+      api: https://openapi.naver.com

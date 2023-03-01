@@ -3,6 +3,7 @@ package com.example.springbootoauth2.oauth.presentation;
 import com.example.springbootoauth2.oauth.application.OauthLoginService;
 import com.example.springbootoauth2.oauth.domain.JwtTokens;
 import com.example.springbootoauth2.oauth.domain.kakao.KakaoLoginParams;
+import com.example.springbootoauth2.oauth.domain.naver.NaverLoginParams;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +20,12 @@ public class OauthController {
     @PostMapping("/kakao")
     public ResponseEntity<JwtTokens> loginKakao(@RequestBody KakaoLoginParams params) {
         JwtTokens jwtTokens = oauthLoginService.loginKakao(params);
+        return ResponseEntity.ok(jwtTokens);
+    }
+
+    @PostMapping("/naver")
+    public ResponseEntity<JwtTokens> loginNaver(@RequestBody NaverLoginParams params) {
+        JwtTokens jwtTokens = oauthLoginService.lognNaver(params);
         return ResponseEntity.ok(jwtTokens);
     }
 }
