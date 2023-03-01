@@ -22,26 +22,27 @@ public class OauthLoginService {
     private final OauthApiClient naverApiClient;
 
     public JwtTokens loginKakao(OauthLoginParams params) {
-        String accessToken = kakaoApiClient.requestAccessToken(params);
-        OauthInfoResponse response = kakaoApiClient.requestOauthInfo(accessToken);
-        OauthMemberInfo oauthMemberInfo = getOauthMemberInfo(response, OauthType.KAKAO);
-
+        OauthInfoResponse oauthInfoResponse = requestOauthInfo(kakaoApiClient, params);
+        OauthMemberInfo oauthMemberInfo = getOauthMemberInfo(oauthInfoResponse);
         return findMemberAndGenerateToken(oauthMemberInfo);
     }
 
     public JwtTokens lognNaver(OauthLoginParams params) {
-        String accessToken = naverApiClient.requestAccessToken(params);
-        OauthInfoResponse response = naverApiClient.requestOauthInfo(accessToken);
-        OauthMemberInfo oauthMemberInfo = getOauthMemberInfo(response, OauthType.NAVER);
-
+        OauthInfoResponse oauthInfoResponse = requestOauthInfo(naverApiClient, params);
+        OauthMemberInfo oauthMemberInfo = getOauthMemberInfo(oauthInfoResponse);
         return findMemberAndGenerateToken(oauthMemberInfo);
     }
 
-    private OauthMemberInfo getOauthMemberInfo(OauthInfoResponse response, OauthType type) {
+    private OauthInfoResponse requestOauthInfo(OauthApiClient client, OauthLoginParams params) {
+        String accessToken = client.requestAccessToken(params);
+        return client.requestOauthInfo(accessToken);
+    }
+
+    private OauthMemberInfo getOauthMemberInfo(OauthInfoResponse response) {
         return OauthMemberInfo.builder()
                 .email(response.getEmail())
                 .nickname(response.getNickname())
-                .type(type)
+                .type(response.getOauthType())
                 .build();
     }
 
