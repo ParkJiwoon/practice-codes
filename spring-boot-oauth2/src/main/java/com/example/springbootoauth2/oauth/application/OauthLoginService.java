@@ -26,14 +26,15 @@ public class OauthLoginService {
 
     public JwtTokens loginKakao(KakaoLoginParams params) {
         KakaoMemberInfoOption option = new KakaoMemberInfoOption(kakaoApiClient, params);
-        OauthMemberInfo oauthMemberInfo = OauthMemberInfo.newInstance(option);
-        Member member = memberService.findOrCreateMember(oauthMemberInfo);
-        return jwtTokenGenerator.generate(member.getId().toString());
+        return findMemberAndGenerateToken(OauthMemberInfo.newInstance(option));
     }
 
     public JwtTokens lognNaver(NaverLoginParams params) {
         NaverMemberInfoOption option = new NaverMemberInfoOption(naverApiClient, params);
-        OauthMemberInfo oauthMemberInfo = OauthMemberInfo.newInstance(option);
+        return findMemberAndGenerateToken(OauthMemberInfo.newInstance(option));
+    }
+
+    private JwtTokens findMemberAndGenerateToken(OauthMemberInfo oauthMemberInfo) {
         Member member = memberService.findOrCreateMember(oauthMemberInfo);
         return jwtTokenGenerator.generate(member.getId().toString());
     }
