@@ -18,12 +18,10 @@ public class Member {
 
     private String nickname;
 
-    private MemberType type;
 
     @Builder
-    public Member(String email, String nickname, MemberType type) {
+    public Member(String email, String nickname) {
         this.email = email;
         this.nickname = nickname;
-        this.type = type;
     }
 }

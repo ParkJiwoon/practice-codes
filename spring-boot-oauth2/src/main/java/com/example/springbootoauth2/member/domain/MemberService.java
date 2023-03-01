@@ -20,7 +20,6 @@ public class MemberService {
         Member member = Member.builder()
                 .email(oauthMemberInfo.getEmail())
                 .nickname(oauthMemberInfo.getNickname())
-                .type(oauthMemberInfo.getType())
                 .build();
 
         return memberRepository.save(member).getId();
