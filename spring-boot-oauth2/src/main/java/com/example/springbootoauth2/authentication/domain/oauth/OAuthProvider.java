@@ -1,5 +1,5 @@
 package com.example.springbootoauth2.authentication.domain.oauth;
 
-public enum OAuthType {
+public enum OAuthProvider {
     KAKAO, NAVER
 }

@@ -8,5 +8,5 @@ import lombok.Getter;
 public class OAuthMemberInfo {
     private final String email;
     private final String nickname;
-    private final OAuthType type;
+    private final OAuthProvider oAuthProvider;
 }

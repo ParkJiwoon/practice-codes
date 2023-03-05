@@ -1,6 +1,6 @@
 package com.example.springbootoauth2.authentication.infra.kakao;
 
-import com.example.springbootoauth2.authentication.domain.oauth.OAuthType;
+import com.example.springbootoauth2.authentication.domain.oauth.OAuthProvider;
 import com.example.springbootoauth2.authentication.domain.oauth.OAuthInfoResponse;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -37,7 +37,7 @@ public class KakaoInfoResponse implements OAuthInfoResponse {
     }
 
     @Override
-    public OAuthType getOauthType() {
-        return OAuthType.KAKAO;
+    public OAuthProvider getOAuthProvider() {
+        return OAuthProvider.KAKAO;
     }
 }
