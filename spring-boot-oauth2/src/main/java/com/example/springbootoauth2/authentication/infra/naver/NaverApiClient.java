@@ -1,5 +1,6 @@
 package com.example.springbootoauth2.authentication.infra.naver;
 
+import com.example.springbootoauth2.authentication.domain.oauth.OAuthProvider;
 import com.example.springbootoauth2.authentication.domain.oauth.OAuthApiClient;
 import com.example.springbootoauth2.authentication.domain.oauth.OAuthInfoResponse;
 import com.example.springbootoauth2.authentication.domain.oauth.OAuthLoginParams;
@@ -27,6 +28,11 @@ public class NaverApiClient implements OAuthApiClient {
     private String clientSecret;
 
     private final RestTemplate restTemplate;
+
+    @Override
+    public OAuthProvider oAuthProvider() {
+        return OAuthProvider.NAVER;
+    }
 
     @Override
     public String requestAccessToken(OAuthLoginParams params) {

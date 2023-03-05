@@ -1,5 +1,6 @@
 package com.example.springbootoauth2.authentication.infra.kakao;
 
+import com.example.springbootoauth2.authentication.domain.oauth.OAuthProvider;
 import com.example.springbootoauth2.authentication.domain.oauth.OAuthApiClient;
 import com.example.springbootoauth2.authentication.domain.oauth.OAuthInfoResponse;
 import com.example.springbootoauth2.authentication.domain.oauth.OAuthLoginParams;
@@ -24,6 +25,11 @@ public class KakaoApiClient implements OAuthApiClient {
     private String apiUrl;
 
     private final RestTemplate restTemplate;
+
+    @Override
+    public OAuthProvider oAuthProvider() {
+        return OAuthProvider.KAKAO;
+    }
 
     @Override
     public String requestAccessToken(OAuthLoginParams params) {

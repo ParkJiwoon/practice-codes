@@ -18,11 +18,11 @@ public class AuthController {
 
     @PostMapping("/kakao")
     public ResponseEntity<AuthTokens> loginKakao(@RequestBody KakaoLoginParams params) {
-        return ResponseEntity.ok(oAuthLoginService.kakaoLogin(params));
+        return ResponseEntity.ok(oAuthLoginService.login(params));
     }
 
     @PostMapping("/naver")
     public ResponseEntity<AuthTokens> loginNaver(@RequestBody NaverLoginParams params) {
-        return ResponseEntity.ok(oAuthLoginService.naverLogin(params));
+        return ResponseEntity.ok(oAuthLoginService.login(params));
     }
 }
