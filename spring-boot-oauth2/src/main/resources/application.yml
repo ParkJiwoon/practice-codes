@@ -3,11 +3,13 @@ jwt:
 
 oauth:
   kakao:
+    client-id: 160cd4f66fc928d2b279d78999d6d018
     url:
       auth: https://kauth.kakao.com
       api: https://kapi.kakao.com
   naver:
-    secret: ZP2xGYxKSn
+    secret: W_2DmcLfYU
+    client-id: Y2i4SlApP7A1KZsUoott
     url:
       auth: https://nid.naver.com
       api: https://openapi.naver.com

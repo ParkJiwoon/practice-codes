@@ -18,11 +18,16 @@ import org.springframework.web.client.RestTemplate;
 @RequiredArgsConstructor
 public class NaverApiClient implements OAuthApiClient {
 
+    private static final String GRANT_TYPE = "authorization_code";
+
     @Value("${oauth.naver.url.auth}")
     private String authUrl;
 
     @Value("${oauth.naver.url.api}")
     private String apiUrl;
+
+    @Value("${oauth.naver.client-id}")
+    private String clientId;
 
     @Value("${oauth.naver.secret}")
     private String clientSecret;
@@ -42,6 +47,8 @@ public class NaverApiClient implements OAuthApiClient {
         httpHeaders.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 
         MultiValueMap<String, String> body = params.makeBody();
+        body.add("grant_type", GRANT_TYPE);
+        body.add("client_id", clientId);
         body.add("client_secret", clientSecret);
 
         HttpEntity<?> request = new HttpEntity<>(body, httpHeaders);

@@ -10,8 +10,6 @@ import org.springframework.util.MultiValueMap;
 @Getter
 @NoArgsConstructor
 public class KakaoLoginParams implements OAuthLoginParams {
-    private String grantType;
-    private String clientId;
     private String authorizationCode;
 
     @Override
@@ -22,8 +20,6 @@ public class KakaoLoginParams implements OAuthLoginParams {
     @Override
     public MultiValueMap<String, String> makeBody() {
         MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
-        body.add("grant_type", grantType);
-        body.add("client_id", clientId);
         body.add("code", authorizationCode);
         return body;
     }
