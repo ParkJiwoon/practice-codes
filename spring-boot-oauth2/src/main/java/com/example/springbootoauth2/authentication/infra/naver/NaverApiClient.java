@@ -73,5 +73,4 @@ public class NaverApiClient implements OAuthApiClient {
 
         return restTemplate.postForObject(url, request, NaverInfoResponse.class);
     }
-
 }
